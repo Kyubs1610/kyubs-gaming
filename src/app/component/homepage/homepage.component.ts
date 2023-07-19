@@ -21,7 +21,7 @@ export class HomepageComponent {
       .subscribe((response: any) => {
         this.games = response.results;
         console.log(this.games);
-
+        
       });
   }
 }

@@ -18,8 +18,10 @@ apiKey: string = environment.API_KEY;
     console.log(this.apiKey);
     const params = new HttpParams()
       .set('key', this.apiKey)
-      .set('search', searchQuery);
-
+      .set('search', searchQuery)
+      .set('search_exact', '')
+      .set ('ordering', '-metacritic');
+    console.log(params);
     return this.http.get(`https://api.rawg.io/api/games?${params}`);
   }
 }
