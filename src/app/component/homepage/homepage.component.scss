@@ -43,6 +43,33 @@
   position: relative;
 }
 
+.genreFilter, .platforms, .popularity{
+  background-color: transparent;
+  border: 1px solid #ffffff;
+  border-radius: 100px;
+  padding: 0.7rem;
+  color: #000;
+}
+.popularity{
+  padding: 1rem;
+}
+.label{
+width: 100%;
+}
+.genreFilter{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  gap: 1rem;
+  margin-top: 1rem;
+  width: 18%;
+}
+.option{
+align-items: start;
+color: #000;
+}
+
 h1{
     text-align: center;
     margin-top: 5rem;
@@ -207,6 +234,15 @@ border: 1px solid rgba( 255, 255, 255, 0.18 );
     background-position: center center;
     opacity: 0.5;
   }
+
+  .filter{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    gap: 5rem;
+    margin-top: 5rem;
+    }
   
   @keyframes floating {
     0% {

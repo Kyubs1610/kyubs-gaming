@@ -43,20 +43,41 @@
 <div class="header">
     
     <h1 color="primary" > 
-    <img src="../../../assets/shsiba-removebg-preview.png" class="shiba"/>
+        <a href="https://kyubs1610.github.io/SaveTheKyubs/"><img src="../../../assets/shsiba-removebg-preview.png" class="shiba"/> </a>
     Welcome to Kyubs Gaming </h1>
 
     <form class="search-bar">
         <mat-form-field class="search" appearance="outline">
             <span matPrefix></span>
-            <input class="search-input" matInput type="text" [(ngModel)]="searchQuery" placeholder="Looking for a game" name="search" >
+            <input class="search-input" matInput type="text" name="game" [(ngModel)]="searchQuery" placeholder="Looking for a game" name="search" >
             <button matSuffix mat-button  (click)="searchGames()"><mat-icon>search</mat-icon></button>
         </mat-form-field>
     </form>
+    <div class="filter">
+        <div class="genreFilter">
+            <span class="label">Order By Genre:</span>
+            <mat-select class="genres" name="selectGenre" [(ngModel)]="genre" (selectionChange)="getGameByGenre(genre)">
+                <mat-option color="primary" class="option" *ngFor="let genre of genres" [value]="genre.id">{{genre.name}}</mat-option>
+            </mat-select>
+        </div>
+
+        <div class="genreFilter">
+            <span class="label">Order By Platforms:</span>
+            <mat-select class="platform" name="selectPlatforms" [(ngModel)]="platform" (selectionChange)="getGameByPlatform(platform)" >
+                <mat-option color="primary" class="option" *ngFor="let platform of platforms" [value]="platform.id">{{platform.name}}</mat-option>
+            </mat-select>
+        </div>
+
+
+    <button mat-raised-button color="primary" class="genreFilter popularity"(click)="gamesByPopularity()">TOP 40 according to METACRITIC</button>
+    <button mat-raised-button color="primary" class="genreFilter popularity"(click)="gamesByRating()">TOP 40 according to the users</button>
+
+    </div>
 
     <br><br>
     <br><br>
 </div>
+
     <br><br>
 <div class="container">
     <ul>
