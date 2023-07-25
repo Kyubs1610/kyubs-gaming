@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { HomepageService } from 'src/app/services/homepage.service';
+import { HomepageService } from 'src/app/services/homepage/homepage.service';
+import { AuthService } from '../../services/login.service'
 
 @Component({
   selector: 'app-homepage',
@@ -17,7 +18,8 @@ export class HomepageComponent implements OnInit {
 
 
   constructor(
-    private homepageService: HomepageService
+    private homepageService: HomepageService,
+    private authService: AuthService,
   ) { }
 
   ngOnInit(): void {
@@ -41,6 +43,9 @@ export class HomepageComponent implements OnInit {
       });
   }
 
+  logout() {
+    this.authService.logout();
+  }
 
   gamesByPlatform(platform: string): void {
     this.homepageService.getGamesByPlatform(platform)
@@ -85,4 +90,5 @@ export class HomepageComponent implements OnInit {
         console.log(this.games);
       });
   }
+  
 }

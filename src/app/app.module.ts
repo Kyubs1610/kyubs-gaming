@@ -11,14 +11,24 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { MatOptionModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
+import { LoginComponent } from './component/login/login.component';
+import { RegisterComponent } from './component/register/register.component';
+import { environment } from './environments/environment';
+import { AngularFireModule } from '@angular/fire/compat';
+import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomepageComponent,
+    LoginComponent,
+    RegisterComponent,
+    
     
   ],
   imports: [
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireAuthModule,
     BrowserModule,
     AppRoutingModule,
     MatFormFieldModule,
@@ -29,11 +39,10 @@ import { MatSelectModule } from '@angular/material/select';
     FormsModule,
     MatOptionModule,
     MatSelectModule,
- 
+    
   ],
-  providers: [
 
-   ],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
