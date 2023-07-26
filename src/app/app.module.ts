@@ -16,7 +16,8 @@ import { RegisterComponent } from './component/register/register.component';
 import { environment } from './environments/environment';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
-import { EmailVerificationComponent } from './component/verification/email-verification/email-verification.component';
+import { EmailVerificationComponent } from './component/verification/email-verification.component';
+import { ForgotpasswordComponent } from './component/forgotpassword/forgotpassword.component';
 
 
 @NgModule({
@@ -26,6 +27,7 @@ import { EmailVerificationComponent } from './component/verification/email-verif
     LoginComponent,
     RegisterComponent,
     EmailVerificationComponent,
+    ForgotpasswordComponent,
     
     
   ],

@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { getAuth, signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
 import { AuthService } from '../../services/login.service';
 
 @Component({
@@ -10,6 +9,7 @@ import { AuthService } from '../../services/login.service';
 export class LoginComponent implements OnInit {
   email : string = '';
   password : string = '';
+  
 
   constructor(private auth : AuthService) {}
 
@@ -23,7 +23,6 @@ export class LoginComponent implements OnInit {
 
   signInWithGoogle() {
     this.auth.googleSignIn();
-    
   }
  
   }

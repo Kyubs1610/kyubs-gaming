@@ -46,7 +46,7 @@
         <a href="https://kyubs1610.github.io/SaveTheKyubs/"><img src="../../../assets/shsiba-removebg-preview.png" class="shiba"/> </a>
     Welcome to Kyubs Gaming </h1>
 
-    <button mat-raised-button color="primary" class="genreFilter" (click)="logout()">Log Out</button>
+    <button mat-raised-button color="primary" class="soloButton logoutButton" (click)="logout()">Log Out</button>
 
     <form class="search-bar">
         <mat-form-field class="search" appearance="outline">
@@ -59,20 +59,20 @@
         <div class="genreFilter">
             <span class="label">Order By Genre:</span>
             <mat-select class="genres" name="selectGenre" [(ngModel)]="genre" (selectionChange)="getGameByGenre(genre)">
-                <mat-option color="primary" class="option" *ngFor="let genre of genres" [value]="genre.id">{{genre.name}}</mat-option>
+                <mat-option class="option" *ngFor="let genre of genres" [value]="genre.id">{{genre.name}}</mat-option>
             </mat-select>
         </div>
 
         <div class="genreFilter">
             <span class="label">Order By Platforms:</span>
             <mat-select class="platform" name="selectPlatforms" [(ngModel)]="platform" (selectionChange)="getGameByPlatform(platform)" >
-                <mat-option color="primary" class="option" *ngFor="let platform of platforms" [value]="platform.id">{{platform.name}}</mat-option>
+                <mat-option class="option" *ngFor="let platform of platforms" [value]="platform.id">{{platform.name}}</mat-option>
             </mat-select>
         </div>
 
 
-    <button mat-raised-button color="primary" class="genreFilter popularity"(click)="gamesByPopularity()">TOP 40 according to METACRITIC</button>
-    <button mat-raised-button color="primary" class="genreFilter popularity"(click)="gamesByRating()">TOP 40 according to the users</button>
+    <button mat-raised-button color="primary" class="genreFilter popularity soloButton"(click)="gamesByPopularity()">TOP 40 according to METACRITIC</button>
+    <button mat-raised-button color="primary" class="genreFilter popularity soloButton" (click)="gamesByRating()">TOP 40 according to the users</button>
 
     </div>
 
