@@ -36,4 +36,23 @@
                 <span class="floating square" style="top:11.542390194075587%;left:91.51041666666667%;animation-delay:-0.1s;"></span>
             </div>
         </div>
+         <div class="wrapper">
+            <div class="container">
+                <div class="top">
+                    <img src="../../assets/shsiba-removebg-preview.png" alt="logo">
+                    <h1>Welcome</h1>
+                </div> 
+
+                <form class="form" action="login" method="post">
+                    <input type="email" placeholder="Email" name="Email" [(ngModel)]="email">
+                    <!-- <input type="text" placeholder="Username" name="username"> -->
+                    <input type="password" placeholder="Password" name="password"[(ngModel)]="password">
+                    <input type="password" placeholder="Confirm Password" name="confirmPassword"[(ngModel)]="confirmPassword">
+                    <hr>
+                    <button type="submit" id="login-button" (click)="register()">Register</button>
+
+                </form>
+
+            </div>
+        </div>
     </main>        

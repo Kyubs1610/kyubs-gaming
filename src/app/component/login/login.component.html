@@ -43,16 +43,20 @@
                     <img src="../../assets/shsiba-removebg-preview.png" alt="logo">
                     <h1>Welcome</h1>
                 </div> 
+                <button type="button" id="google-account" (click)="signInWithGoogle()"> <img src="../../../assets/7611770.png" alt="logo-google" class="logo-google">Log in with Google</button>
+
+                <span> Or Log in With your email </span>
                 <form class="form" action="login" method="post">
-                    <input type="text" placeholder="Username" name="username">
-                    <input type="password" placeholder="Password" name="password">
-                    <button type="submit" id="login-button">Login</button>
+                    <input type="email" placeholder="email" name="email" [(ngModel)]="email">
+                    <input type="password" placeholder="Password" name="password"[(ngModel)]="password">
+                    <button type="submit" id="login-button" (click)="login()">Login</button>
+
                     <hr>
                 </form>
                 <div class="bottom">
-                    <a href="register">Register</a>
-                    <a href="forgot">Forgot Password</a>
-                    <button type="button" id="google-account" (click)="signInWithGoogle()">Google</button>
+                    <span> | </span>
+                    <a href="register">Register</a> <span> | </span>
+                    <a href="forgot">Forgot Password</a> <span> | </span>
                 </div>
             </div>
         </div>

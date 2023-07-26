@@ -18,21 +18,7 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    if(this.email == '') {
-      alert('Please enter email');
-      return;
-    }
-
-    if(this.password == '') {
-      alert('Please enter password');
-      return;
-    }
-
-    this.auth.login(this.email,this.password);
-    
-    this.email = '';
-    this.password = '';
-
+  this.auth.login(this.email,this.password);
   }
 
   signInWithGoogle() {

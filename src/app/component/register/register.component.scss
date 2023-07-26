@@ -1,0 +1,83 @@
+.wrapper{
+    overflow-y: hidden; /* Hide vertical scrollbar */
+}
+.container{
+    background: rgba( 255, 255, 255, 0.35 );
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 4px );
+    -webkit-backdrop-filter: blur( 4px );
+    border-radius: 10px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    width: 30%;
+    margin: 0 auto;
+    margin-top: 15%;
+    overflow: hidden; 
+    overflow-y: hidden; 
+    @media(max-width: 768px){
+        width: 70%;
+    }
+
+    
+    span{
+        color: #fff;
+        font-size: 20px;
+        font-weight: 500;
+        margin-bottom: 1rem;
+    }
+    form{
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        width: 70%;
+     }
+     input{
+        display: flex;
+        flex-direction: column;     
+        height: 2rem;
+  
+    }
+    ::placeholder{
+        text-align: center;
+    }
+     button{
+        display: flex;
+        justify-content: center;
+        padding: 0.2rem;
+     }
+     a{
+        color: #fff;
+        text-decoration: none;
+     }
+    .bottom{
+        display: flex;
+        justify-content: center;
+        flex-direction: row;
+        gap: 1rem;
+        margin-top: 1rem;
+    }
+    }
+
+    .top{
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        margin-bottom: 1rem;
+        img{
+            width: 40px;
+            height: 40px;
+            margin-top: -0.5rem;
+        }
+        h1{
+            font-size: 40px;
+            font-weight: 900;
+            color: #fff;
+            display: flex;
+        }
+
+
+    }

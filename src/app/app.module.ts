@@ -16,6 +16,8 @@ import { RegisterComponent } from './component/register/register.component';
 import { environment } from './environments/environment';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
+import { EmailVerificationComponent } from './component/verification/email-verification/email-verification.component';
+
 
 @NgModule({
   declarations: [
@@ -23,6 +25,7 @@ import { AngularFireAuthModule } from '@angular/fire/compat/auth';
     HomepageComponent,
     LoginComponent,
     RegisterComponent,
+    EmailVerificationComponent,
     
     
   ],
