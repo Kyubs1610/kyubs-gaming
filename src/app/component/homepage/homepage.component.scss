@@ -2,7 +2,6 @@
    display: flex;
    justify-content: center;
    background-color: transparent;
-
    margin-top: 1rem;
    .search{
     width: 50%;
@@ -40,7 +39,7 @@
 
 .genreFilter, .platforms, .popularity{
   
-  padding: 10px;
+ padding: 10px;
  border-radius: 5px;
 }
 .popularity{
@@ -177,7 +176,50 @@ border: 1px solid rgba( 255, 255, 255, 0.18 );
   
   @media screen and (max-width: 768px) {
     h1{
-      font-size: 3rem
+      font-size: 2rem
     }
-    
+    .shiba{
+      height: 100px;
+      width: 100px;
+    }
+    button{
+      width: 15%;
+    }
+    .header{
+      width: 100%;
+      padding: 1rem;
+      .search{
+        width: 100%;
+      }
+      .filter{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        gap:0rem;
+         }
+      .genreFilter{
+        font-size: 1rem;
+        font-weight: 300;
+        width: 100%;
+
+    }
+
+  }
+  .container ul li{
+    width: 70%;
+    height: 20rem;
+  }
+  // .game_card:hover .top-layout {
+  //   h2{
+  //     font-size: 1rem;}
+
+  //   height: 12rem;
+  //   font-size: 0.5rem;
+  //   font-weight: 300;
+  // }
+
+  // hover not working on mobile devices
+
+
   }
