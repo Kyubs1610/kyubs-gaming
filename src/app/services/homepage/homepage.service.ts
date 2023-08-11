@@ -20,6 +20,7 @@ genre!: string;
     const params = new HttpParams()
       .set('key', this.apiKey)
       .set('search', searchQuery)
+      .set('search_precise', 'true')
       .set('metacritic', '1,100')
       .set ('ordering', '-metacritic');
     console.log(params);
