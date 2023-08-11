@@ -46,7 +46,9 @@
                 <button type="button" id="google-account" (click)="signInWithGoogle()"> <img src="../../../assets/7611770.png" alt="logo-google" class="logo-google">Log in with Google</button>
 
                 <span> Or Log in With your email </span>
+                 <hr>
                 <form class="form" action="login" method="post">
+                    <hr>
                     <input type="email" placeholder="email" name="email" [(ngModel)]="email">
                     <input type="password" placeholder="Password" name="password"[(ngModel)]="password">
                     <button type="submit" id="login-button" (click)="login()">Login</button>
