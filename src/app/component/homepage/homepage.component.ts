@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HomepageService } from 'src/app/services/homepage/homepage.service';
-import { AuthService } from '../../services/login.service'
+import { AuthService } from '../../services/login/login.service'
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-homepage',
@@ -20,6 +21,7 @@ export class HomepageComponent implements OnInit {
   constructor(
     private homepageService: HomepageService,
     private authService: AuthService,
+    private router: Router,
   ) { }
 
   ngOnInit(): void {
@@ -90,5 +92,7 @@ export class HomepageComponent implements OnInit {
         console.log(this.games);
       });
   }
-  
+  redirectToDashboard() {
+    this.router.navigate(['/dashboard']); 
+  }
 }

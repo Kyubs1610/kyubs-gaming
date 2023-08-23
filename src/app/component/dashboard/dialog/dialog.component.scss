@@ -1,0 +1,45 @@
+.profile {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin: 1rem;
+}
+.circle{
+    border: 3px solid #fff;
+}
+
+button{
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0.5rem;
+    background-color: #ffffff;
+    color: #000000;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    &:hover{
+        background-color: #000000;
+        color: #ffffff;
+    }
+}
+.dialog-action{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.dialog-title{
+    text-align: center;
+    font-family: 'Tektur', monospace;
+    color: #d6d4d4;
+}
+
+.dialog-content {
+  background-color: #4b4a4a; /* Set your desired background color here */
+
+}

@@ -73,6 +73,8 @@ width: 100%;
   padding: 10px;
   font-size: 1rem;
   font-weight: 600;
+  margin: 0.5rem;
+
   cursor: pointer;
   transition: all 0.3s ease-in-out;
   &:hover{
@@ -81,10 +83,11 @@ width: 100%;
   }
 }
 
-.logoutButton{
-  position: absolute;
+.head{
+  position:absolute;
   top: 0;
-  right: 0;
+  right:0;
+
 }
 
 
@@ -100,7 +103,7 @@ h1{
 
    }
 
-   .header{
+.header{
 background: rgba( 255, 255, 255, 0.25 );
 box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
 backdrop-filter: blur( 4px );

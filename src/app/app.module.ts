@@ -18,6 +18,10 @@ import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { EmailVerificationComponent } from './component/verification/email-verification.component';
 import { ForgotpasswordComponent } from './component/forgotpassword/forgotpassword.component';
+import { DashboardComponent } from './component/dashboard/dashboard.component';
+import { DialogComponent } from './component/dashboard/dialog/dialog.component';
+import {MatDialogModule} from '@angular/material/dialog';
+
 
 
 @NgModule({
@@ -28,6 +32,8 @@ import { ForgotpasswordComponent } from './component/forgotpassword/forgotpasswo
     RegisterComponent,
     EmailVerificationComponent,
     ForgotpasswordComponent,
+    DashboardComponent,
+    DialogComponent,
     
     
   ],
@@ -44,7 +50,7 @@ import { ForgotpasswordComponent } from './component/forgotpassword/forgotpasswo
     FormsModule,
     MatOptionModule,
     MatSelectModule,
-    
+    MatDialogModule,
   ],
 
   providers: [],

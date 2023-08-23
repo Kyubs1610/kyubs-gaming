@@ -1,0 +1,42 @@
+.title{
+background: rgba( 255, 255, 255, 0.25 );
+box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+backdrop-filter: blur( 4px );
+-webkit-backdrop-filter: blur( 4px );
+border-radius: 10px;
+border: 1px solid rgba( 255, 255, 255, 0.18 );
+padding:3rem;
+
+    h1{
+        display: flex;
+        justify-content: center;
+        margin: 1rem;
+        font-family: 'Tektur', monospace;
+        font-size: 2rem;
+        font-weight: 500;
+        color: #d6d4d4;
+    }
+.profile {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin: 1rem;
+    background-image: url("../../../assets/profile/kyubs.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    top: 0;
+    right: 0;
+    position: absolute;
+    &:hover{
+        background-image: url("../../../assets/profile/image.png");
+
+    }
+
+}
+.circle{
+    border: 3px solid #fff;
+}
+.myclass main{
+    background-color: aquamarine !important;
+}
+}

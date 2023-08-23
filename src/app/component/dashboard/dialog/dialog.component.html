@@ -1,0 +1,16 @@
+<main class="container dialog-content"> 
+<h1 mat-dialog-title class="container dialog-title">Choose your Profile Picture</h1>
+<div mat-dialog-content >
+  <div class=profilePicture>
+    <img class="profile circle"  src="https://i.ibb.co/fkZkQDV/kratos.png"(click)="selectProfilePicture('https://i.ibb.co/fkZkQDV/kratos.png')"/>
+    <img class="profile circle"  src="https://i.ibb.co/CvkxtxB/kyubskemon.png"(click)="selectProfilePicture('https://i.ibb.co/CvkxtxB/kyubskemon.png')" />
+    <img class="profile circle"  src="https://i.ibb.co/DW7DFWP/lara.png"(click)="selectProfilePicture('https://i.ibb.co/DW7DFWP/lara.png')"/>
+    <img class="profile circle"  src="https://i.ibb.co/gdyyV0X/tlou.png"(click)="selectProfilePicture('https://i.ibb.co/gdyyV0X/tlou.png')"/>
+    <img class="profile circle"  src="https://i.ibb.co/fdfCLQF/samurai1.png"(click)="selectProfilePicture('https://i.ibb.co/fdfCLQF/samurai1.png')"/>
+  </div> 
+</div>
+<div mat-dialog-actions class="container dialog-action">
+  <button mat-button mat-dialog-close (click)="saveProfile()" >Save</button>
+  <button mat-button mat-dialog-close>Cancel</button>
+</div>
+</main>

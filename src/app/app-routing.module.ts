@@ -6,6 +6,7 @@ import { LoginComponent } from './component/login/login.component';
 import { AuthGuardService } from '../app/auth/auth-guard.service';
 import { EmailVerificationComponent } from './component/verification/email-verification.component';
 import { ForgotpasswordComponent } from './component/forgotpassword/forgotpassword.component';
+import { DashboardComponent } from './component/dashboard/dashboard.component';
 
 const routes: Routes = [
 
@@ -30,7 +31,13 @@ const routes: Routes = [
   {
     path:'forgot-password',
     component: ForgotpasswordComponent
-  }
+  },
+  {
+  path:'dashboard',
+  component: DashboardComponent,
+  canActivate: [AuthGuardService]
+
+  },
 ];
 
 @NgModule({

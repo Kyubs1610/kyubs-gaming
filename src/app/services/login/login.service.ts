@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { GoogleAuthProvider} from '@angular/fire/auth'
 import { Router } from '@angular/router';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
+
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +11,10 @@ import { Router } from '@angular/router';
 export class AuthService {
   private authenticated = false;
 
-  constructor(private fireauth : AngularFireAuth, private router : Router) { }
+  constructor(private fireauth : AngularFireAuth,
+              private router : Router,
+              private firestore : AngularFirestore
+              ) { }
 
   // login method
   login(email : string, password : string) {
@@ -17,7 +22,12 @@ export class AuthService {
         localStorage.setItem('token','true');
 
         if(res.user?.emailVerified == true) {
+          this.firestore.collection('userInfo').doc(res.user?.uid).set({
+            uid: res.user?.uid,
+            email: res.user?.email,
+          });
           this.router.navigate(['homepage']);
+          
         } else {
           this.router.navigate(['/verify-email']);
         }
@@ -71,9 +81,10 @@ export class AuthService {
 
   //sign in with google
   googleSignIn() {
-    return this.fireauth.signInWithPopup(new GoogleAuthProvider).then(res => {
+      return this.fireauth.signInWithPopup(new GoogleAuthProvider).then(res => {
       this.router.navigate(['/homepage']);
       localStorage.setItem('token',JSON.stringify(res.user?.uid));
+      return this.firestore.collection('userInfo').doc(res.user?.uid).set({ uid: res.user?.uid, email: res.user?.email});
     }, err => {
       alert(err.message);
     })
@@ -87,5 +98,10 @@ export class AuthService {
       return false;
     }
   }
+
+  getCurrentUser() {
+    return this.fireauth.authState;
+  }
+
 
 }

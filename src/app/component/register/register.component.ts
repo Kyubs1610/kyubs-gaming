@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AuthService } from 'src/app/services/login.service';
+import { AuthService } from '../../services/login/login.service'
 
 @Component({
   selector: 'app-register',
