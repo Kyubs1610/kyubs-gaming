@@ -1,14 +1,19 @@
 <main class="container dialog-content"> 
-<h1 mat-dialog-title class="container dialog-title">Choose your Profile Picture</h1>
+<h1 mat-dialog-title class="container dialog-title">Choose your profile picture</h1>
 <div mat-dialog-content >
   <div class=profilePicture>
-    <img class="profile circle"  src="https://i.ibb.co/fkZkQDV/kratos.png"(click)="selectProfilePicture('https://i.ibb.co/fkZkQDV/kratos.png')"/>
-    <img class="profile circle"  src="https://i.ibb.co/CvkxtxB/kyubskemon.png"(click)="selectProfilePicture('https://i.ibb.co/CvkxtxB/kyubskemon.png')" />
-    <img class="profile circle"  src="https://i.ibb.co/DW7DFWP/lara.png"(click)="selectProfilePicture('https://i.ibb.co/DW7DFWP/lara.png')"/>
-    <img class="profile circle"  src="https://i.ibb.co/gdyyV0X/tlou.png"(click)="selectProfilePicture('https://i.ibb.co/gdyyV0X/tlou.png')"/>
-    <img class="profile circle"  src="https://i.ibb.co/fdfCLQF/samurai1.png"(click)="selectProfilePicture('https://i.ibb.co/fdfCLQF/samurai1.png')"/>
+    <img class="profile circle" tabindex="0" src="https://cdn.midjourney.com/4f054a05-a609-4800-b83c-7456fbe0af7b/0_0_384_N.webp"(click)="selectProfilePicture('https://cdn.midjourney.com/4f054a05-a609-4800-b83c-7456fbe0af7b/0_0_384_N.webp')"/>
+    <img class="profile circle" tabindex="0" src="https://cdn.midjourney.com/e06bf194-4d9c-48ab-b771-0cec52e1709a/0_0.png"(click)="selectProfilePicture('https://cdn.midjourney.com/e06bf194-4d9c-48ab-b771-0cec52e1709a/0_0.png')" />
+    <img class="profile circle" tabindex="0" src="https://cdn.midjourney.com/5eac9860-c90a-490c-a6b3-d730c3f336f6/0_0.png"(click)="selectProfilePicture('https://cdn.midjourney.com/5eac9860-c90a-490c-a6b3-d730c3f336f6/0_0.png')"/>
+    <img class="profile circle" tabindex="0" src="https://cdn.midjourney.com/3b275da4-08ad-4c44-9ab5-28e021ed8689/0_0.png"(click)="selectProfilePicture('https://cdn.midjourney.com/3b275da4-08ad-4c44-9ab5-28e021ed8689/0_0.png')"/>
+    <img class="profile circle" tabindex="0" src="https://i.ibb.co/fdfCLQF/samurai1.png"(click)="selectProfilePicture('https://i.ibb.co/fdfCLQF/samurai1.png')"/>
   </div> 
 </div>
+<h2 mat-dialog-title class="container dialog-title"> Choose your pseudo here</h2>
+<div class="container dialog-action">
+<input type="text" class="input" [(ngModel)]="users.pseudo" placeholder="Your pseudo" />
+</div><br>
+<hr>
 <div mat-dialog-actions class="container dialog-action">
   <button mat-button mat-dialog-close (click)="saveProfile()" >Save</button>
   <button mat-button mat-dialog-close>Cancel</button>

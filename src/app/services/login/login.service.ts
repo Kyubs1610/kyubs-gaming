@@ -18,25 +18,35 @@ export class AuthService {
 
   // login method
   login(email : string, password : string) {
-    this.fireauth.signInWithEmailAndPassword(email,password).then( res => {
-        localStorage.setItem('token','true');
-
-        if(res.user?.emailVerified == true) {
-          this.firestore.collection('userInfo').doc(res.user?.uid).set({
-            uid: res.user?.uid,
-            email: res.user?.email,
-          });
-          this.router.navigate(['homepage']);
-          
-        } else {
-          this.router.navigate(['/verify-email']);
-        }
-
+    this.fireauth.signInWithEmailAndPassword(email, password).then(res => {
+      localStorage.setItem('token', 'true');
+  
+      if (res.user?.emailVerified) {
+        // Check if the user already exists in the database
+        this.firestore.collection('userInfo').doc(res.user?.uid).get().toPromise().then(doc => {
+          if (doc && doc.exists) {
+            // User exists, perform an update
+            this.router.navigate(['homepage']);
+          } else {
+            // User doesn't exist, perform a set
+            this.firestore.collection('userInfo').doc(res.user?.uid).set({
+              uid: res.user?.uid,
+              email: res.user?.email,
+            }).then(() => {
+              this.router.navigate(['homepage']);
+            });
+          }
+        });
+  
+      } else {
+        this.router.navigate(['/verify-email']);
+      }
     }, err => {
-        alert(err.message);
-        this.router.navigate(['/']);
+      alert(err.message);
+      this.router.navigate(['/']);
     })
   }
+  
 
   // register method
   register(email : string, password : string) {
@@ -84,10 +94,22 @@ export class AuthService {
       return this.fireauth.signInWithPopup(new GoogleAuthProvider).then(res => {
       this.router.navigate(['/homepage']);
       localStorage.setItem('token',JSON.stringify(res.user?.uid));
-      return this.firestore.collection('userInfo').doc(res.user?.uid).set({ uid: res.user?.uid, email: res.user?.email});
+      const userInfo = { uid: res.user?.uid, email: res.user?.email };
+
+    // Check if the user already exists in the database
+    this.firestore.collection('userInfo').doc(res.user?.uid).get().toPromise().then(doc => {
+      if (doc && doc.exists) { // Check if doc exists before accessing its properties
+        // User exists, perform an update
+        this.firestore.collection('userInfo').doc(res.user?.uid).update(userInfo);
+      } else {
+        // User doesn't exist, perform a set
+        this.firestore.collection('userInfo').doc(res.user?.uid).set(userInfo);
+      }
+    });
+  
     }, err => {
       alert(err.message);
-    })
+    });
   }
 
   isAuthenticated() {

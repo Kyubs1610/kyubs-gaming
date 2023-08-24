@@ -34,18 +34,7 @@ ngOnInit() {
     });
   });
 }
-              
-  updatePseudo() {
-    this.userinfo.updatePseudo(this.users.pseudo)
-      .then(() => {
-        alert('Pseudo updated');
-        document.location.reload();
-      })
-      .catch((error) => {
-        alert('Something went wrong');
-        console.log(error);
-      });
-  }
+
   openDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
     this.dialog.open(DialogComponent, {
       width: 'auto',

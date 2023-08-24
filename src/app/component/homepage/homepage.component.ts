@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HomepageService } from 'src/app/services/homepage/homepage.service';
 import { AuthService } from '../../services/login/login.service'
+import { UserinfoService } from 'src/app/services/userinfo/userinfo.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -15,16 +16,31 @@ export class HomepageComponent implements OnInit {
   genres!: any[] 
   platform!: string;
   platforms!: any[];
-
+  userInfo: any;
+  user: any 
+  users = { 
+          avatar:'',
+          pseudo: '',
+          email: '',
+         };
 
 
   constructor(
     private homepageService: HomepageService,
     private authService: AuthService,
+    private userinfo: UserinfoService,
     private router: Router,
   ) { }
 
   ngOnInit(): void {
+    this.authService.getCurrentUser().subscribe((user) => {
+      this.user = user;
+      console.log(this.user.uid);
+      this.userinfo.getUserData(this.user?.uid).subscribe((userData) => {
+        this.userInfo = userData.data();
+        console.log(this.userInfo);
+      });
+    });
     this.homepageService.getGenres().subscribe((response: any) => {
       this.genres = response.results;
       console.log(this.genres);
@@ -33,6 +49,7 @@ export class HomepageComponent implements OnInit {
       this.platforms = response.results;
       console.log(this.platforms);
     });
+
 
   }
 

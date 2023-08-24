@@ -3,9 +3,19 @@
     height: 80px;
     border-radius: 50%;
     margin: 1rem;
+    cursor: pointer;
+    &:hover {
+      filter: brightness(0.8);
+    }
+ 
+ 
 }
 .circle{
     border: 3px solid #fff;
+    &:focus {
+       outline: 3px solid #05527e;
+    }
+  
 }
 
 button{
@@ -40,6 +50,7 @@ button{
 }
 
 .dialog-content {
-  background-color: #4b4a4a; /* Set your desired background color here */
+  background-color: #4b4a4a; 
 
 }
+
