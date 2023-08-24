@@ -30,44 +30,22 @@ selectProfilePicture(selectedAvatar: string) {
 }
 
 saveProfile() {
-  // Check if there's a selected avatar
-  if (this.selectedAvatar) {
-    // Update the avatar in the database
-    this.userinfo.updateAvatar(this.selectedAvatar)
-      .then(() => {
-        // Clear the selected avatar after updating
-        this.selectedAvatar = '';
-        // Now, update the pseudo
-        this.userinfo.updatePseudo(this.users.pseudo)
-          .then(() => {
-            alert('Avatar and Pseudo updated successfully');
-            // Reload the entire page to reflect changes
-            document.location.reload();
-          })
-          .catch((error) => {
-            console.error('Error updating pseudo:', error);
-            // You might want to handle this error more gracefully
-          });
-      })
-      .catch((error) => {
-        console.error('Error updating avatar:', error);
-        alert('Something went wrong');
-      });
-  } else {
-    // No avatar selected
-    // Just update the pseudo
-    this.userinfo.updatePseudo(this.users.pseudo)
-      .then(() => {
-        alert('Pseudo updated successfully');
-        // Reload the entire page to reflect changes
-        document.location.reload();
-      })
-      .catch((error) => {
-        console.error('Error updating pseudo:', error);
-        alert('Something went wrong');
-      });
-  }
+  const avatarUpdatePromise = this.selectedAvatar
+    ? this.userinfo.updateAvatar(this.selectedAvatar)
+    : Promise.resolve(); // Resolve if no avatar selected
+
+  avatarUpdatePromise.then(() => {
+    return this.userinfo.updatePseudo(this.users.pseudo);
+  }).then(() => {
+    alert('Profile updated successfully');
+    // Reload the entire page to reflect changes
+    document.location.reload();
+  }).catch(error => {
+    console.error('Error updating profile:', error);
+    alert('Something went wrong');
+  });
 }
+
 
 
 }
