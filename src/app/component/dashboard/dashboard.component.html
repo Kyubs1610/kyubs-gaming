@@ -41,11 +41,11 @@
     <!-- <img class="profile circle" [src]="userInfo.avatar" (click)="openDialog('0ms', '0ms')">  -->
 </div>
 <main class="containerinfo"> 
-<div mat-dialog-content class="containercontent" *ngIf="userInfo">
+<div  class="containercontent" *ngIf="userInfo">
     <img class="containerpicture circle" [src]="userInfo.avatar" (click)="openDialog('0ms', '0ms')"> 
     <div class="text-container">
-    <h2 mat-dialog-title class="containertitle"> <span> Pseudo : </span>{{ userInfo.pseudo }} </h2>
-    <h2 mat-dialog-title class="containertitle"> <span> Email : </span> {{ userInfo.email }} </h2>
+    <h2  class="containertitle"> <span> Pseudo : </span>{{ userInfo.pseudo }} </h2>
+    <h2  class="containertitle"> <span> Email : </span> {{ userInfo.email }} </h2>
     <a routerLink="/forgot-password">Change your Password</a> 
 
 </div>
