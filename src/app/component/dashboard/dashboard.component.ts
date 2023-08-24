@@ -44,5 +44,8 @@ ngOnInit() {
     });
   }
 
+  logout() {
+    this.authService.logout();
+  }
 
 }

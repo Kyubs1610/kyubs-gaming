@@ -38,7 +38,7 @@
 
 <div class="title" *ngIf="userInfo"> 
     <h1> Welcome {{ userInfo.pseudo }} </h1>
-    <!-- <img class="profile circle" [src]="userInfo.avatar" (click)="openDialog('0ms', '0ms')">  -->
+    <button mat-raised-button color="primary" class="soloButton logoutButton" (click)="logout()">Log Out</button>
 </div>
 <main class="containerinfo"> 
 <div  class="containercontent" *ngIf="userInfo">
