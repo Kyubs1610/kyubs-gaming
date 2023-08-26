@@ -1,6 +1,10 @@
 main{
     overflow: hidden; 
     overflow-y: hidden; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
 }
 
 .container{
@@ -16,8 +20,6 @@ main{
     flex-direction: column;
     padding: 20px;
     width: 40%;
-    margin: 0 auto;
-    margin-top: 15%;
     overflow: hidden; 
     overflow-y: hidden; 
     gap:1.5rem;

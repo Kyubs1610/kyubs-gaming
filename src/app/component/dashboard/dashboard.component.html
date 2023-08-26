@@ -54,9 +54,9 @@
 
 </main>
 <div class="containertop3"> 
-    <ul>
-        <li> + </li>
-        <li> + </li>
-        <li> + </li>
+    <ul >
+            <li *ngFor="let userCollection of userInfo?.collection; let i = index">
+                <img  class="game_cards" [src]="userCollection" *ngIf="userCollection">
+            </li>
     </ul>
 </div>

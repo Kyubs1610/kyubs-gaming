@@ -1,6 +1,14 @@
+main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+}
+
 .wrapper{
     overflow-y: hidden; /* Hide vertical scrollbar */
-}
+    width: 30%;}
 .container{
     background: rgba( 255, 255, 255, 0.35 );
     box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
@@ -13,9 +21,6 @@
     align-items: center;
     justify-content: center;
     padding: 20px;
-    width: 30%;
-    margin: 0 auto;
-    margin-top: 15%;
     overflow: hidden; 
     overflow-y: hidden; 
     @media(max-width: 768px){

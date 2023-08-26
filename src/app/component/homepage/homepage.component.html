@@ -79,6 +79,11 @@
     <ul>
         <li *ngFor="let game of games">
             <div class="game_card" [style.backgroundImage]="'url(' + game.short_screenshots[0]?.image + ')'">
+                <img class="favorite"
+        [src]="isFavorited ? '../../../assets/profile/favoritered.png' : '../../../assets/profile/favorite.svg'"
+        (click)="toggleFavorite(game)"
+      >
+
             <div class="top-layout">
                 <h2>{{game.name}}</h2>
                 Plateform : <span *ngFor="let platform of game.platforms">{{ platform.platform.name }}, </span> <br>

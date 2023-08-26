@@ -148,6 +148,7 @@ height:10%;
     height: 100%;
     border-radius: calc(0.3rem - 0px);
     border: 2px solid rgba( 255, 255, 255, 0.18 );
+    cursor: auto;
 
 }
 
@@ -169,22 +170,22 @@ height:10%;
     opacity: 0.8 !important;
     backdrop-filter: blur( 4px );
     background-color: #000000;
-    width: 100%;
+    width: 101%;
   }
 .top-layout {
     opacity: 0;
     position: absolute;
     bottom: 0;
     text-align: center;
-    width: 100%;
   }
   .profile {
-    width: 80px;
-    height: 80px;
+    width: 100px;
+    height: 100px;
     border-radius: 50%;
     background-image: url("../../../assets/profile/kyubs.jpg");
     background-repeat: no-repeat;
     background-size: cover;
+    margin-right: 2rem;
     cursor:pointer;
     &:hover{
       filter: brightness(0.8);
@@ -193,6 +194,18 @@ height:10%;
 }
 .circle{
     border: 3px solid #fff;
+}
+
+.favorite{
+  height:30px;
+  width: 30px;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+  &:focus{
+    background-image: url("../../../assets/profile/favoritered.png");
+  }
 }
   
   @media screen and (max-width: 768px) {
@@ -231,16 +244,7 @@ height:10%;
     width: 70%;
     height: 20rem;
   }
-  // .game_card:hover .top-layout {
-  //   h2{
-  //     font-size: 1rem;}
 
-  //   height: 12rem;
-  //   font-size: 0.5rem;
-  //   font-weight: 300;
-  // }
-
-  // hover not working on mobile devices
 
 
   }

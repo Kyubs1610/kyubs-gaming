@@ -41,7 +41,9 @@ updateAvatar(avatarLink: string) {
     }
   });
 }
-              
+
+
 
 }
+
 

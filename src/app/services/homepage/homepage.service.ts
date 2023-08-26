@@ -2,17 +2,40 @@ import { environment } from '../../environments/environment';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { AuthService } from '../login/login.service';
+import { UserinfoService } from '../userinfo/userinfo.service';
+
 @Injectable({
   providedIn: 'root'
 })
 export class HomepageService {
 apiKey: string = environment.API_KEY;
 genre!: string;
+user: any;
+userInfo: any;
+games!: any[];
 
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    private firestore: AngularFirestore,
+    private fireauth: AngularFireAuth,
+    private authService: AuthService,
+    private userinfo: UserinfoService,
   ) {}
 
+  ngOnInit() {
+    this.authService.getCurrentUser().subscribe((user) => {
+      this.user = user;
+      console.log(this.user.uid);
+      this.userinfo.getUserData(this.user?.uid).subscribe((userData) => {
+        this.userInfo = userData.data();
+        console.log(this.userInfo);
+      this.games = this.userInfo.collection;
+      });
+    });
+  }
   getGames(searchQuery: string): Observable<any> {
     const params = new HttpParams()
       .set('key', this.apiKey)
@@ -81,6 +104,15 @@ console.log(params);
 return this.http.get(`https://api.rawg.io/api/games?${params}`)
 }
 
-
+updateFavorite(collection: Array<any>) {
+  return this.fireauth.currentUser.then((user) => {
+    if (user) {
+      return this.firestore.collection('userInfo').doc(user.uid).update({ collection: collection });
+      
+    } else {
+      return Promise.resolve(); 
+    }
+  });
+}
 }
 

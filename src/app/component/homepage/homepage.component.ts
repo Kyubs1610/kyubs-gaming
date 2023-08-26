@@ -22,7 +22,14 @@ export class HomepageComponent implements OnInit {
           avatar:'',
           pseudo: '',
           email: '',
+          collection: [
+            {
+              background_image: '',
+            }
+          ],
          };
+
+collection: any[] = []; 
 
 
   constructor(
@@ -112,4 +119,18 @@ export class HomepageComponent implements OnInit {
   redirectToDashboard() {
     this.router.navigate(['/dashboard']); 
   }
+
+  isFavorited = false;
+
+  toggleFavorite(game: any) {
+    this.isFavorited = !this.isFavorited;
+    this.collection.push(game.short_screenshots[0]?.image);
+    console.log(this.collection);
+
+    return this.homepageService.updateFavorite(this.collection);
+
+  }
+
+  
+
 }

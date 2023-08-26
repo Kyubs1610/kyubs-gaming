@@ -18,6 +18,8 @@ export class DashboardComponent  {
           email: '',
          };
   userInfo: any;
+  games!: any[];
+
 
   constructor(private userinfo: UserinfoService,
               private authService: AuthService,
@@ -31,6 +33,7 @@ ngOnInit() {
     this.userinfo.getUserData(this.user?.uid).subscribe((userData) => {
       this.userInfo = userData.data();
       console.log(this.userInfo);
+    this.games = this.userInfo.collection;
     });
   });
 }
