@@ -104,13 +104,23 @@ console.log(params);
 return this.http.get(`https://api.rawg.io/api/games?${params}`)
 }
 
-updateFavorite(collection: Array<any>) {
+updateFavorite(collection: Array<string>) {
   return this.fireauth.currentUser.then((user) => {
     if (user) {
       return this.firestore.collection('userInfo').doc(user.uid).update({ collection: collection });
       
     } else {
       return Promise.resolve(); 
+    }
+  });
+}
+deleteFavorite(game: any) {
+  return this.fireauth.currentUser.then((user) => {
+    if (user) {
+      const userUid = user.uid;
+      return this.firestore.collection('userInfo').doc(userUid).update({ collection: game });
+    } else {
+      return Promise.resolve(); // Return an empty promise if the user is not logged in
     }
   });
 }

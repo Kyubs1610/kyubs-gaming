@@ -124,6 +124,8 @@ collection: any[] = [];
 
   toggleFavorite(game: any) {
     this.isFavorited = !this.isFavorited;
+    console.log(this.isFavorited);
+    this.collection = this.userInfo.collection;
     this.collection.push(game.short_screenshots[0]?.image);
     console.log(this.collection);
 
@@ -131,6 +133,6 @@ collection: any[] = [];
 
   }
 
-  
+
 
 }

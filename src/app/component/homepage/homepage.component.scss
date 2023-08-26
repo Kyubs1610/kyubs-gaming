@@ -115,6 +115,9 @@ border: 1px solid rgba( 255, 255, 255, 0.18 );
 height:10%;
    }
 
+.container{
+  margin-top: 5rem;
+}
 .container ul{
     display: flex;
     gap: 2.5rem;
@@ -122,6 +125,7 @@ height:10%;
     align-items: center;
     flex-direction: row;
     flex-wrap: wrap;
+    margin-top: 5rem;
 }
 .container li{
     display: flex;
@@ -192,7 +196,7 @@ height:10%;
     }
 
 }
-.circle{
+.rond{
     border: 3px solid #fff;
 }
 

@@ -3,6 +3,7 @@ import { UserinfoService } from 'src/app/services/userinfo/userinfo.service';
 import { AuthService } from 'src/app/services/login/login.service';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogComponent } from './dialog/dialog.component';
+import { HomepageService } from 'src/app/services/homepage/homepage.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -19,11 +20,12 @@ export class DashboardComponent  {
          };
   userInfo: any;
   games!: any[];
-
+  collection: any[] = []; 
 
   constructor(private userinfo: UserinfoService,
               private authService: AuthService,
               private dialog: MatDialog,
+              private homepageService: HomepageService,
               ) {}
 
 ngOnInit() {
@@ -51,4 +53,11 @@ ngOnInit() {
     this.authService.logout();
   }
 
+deleteGame(game: any) {
+  this.collection = this.userInfo.collection;
+  console.log(this.collection);
+  this.collection.splice(this.collection.indexOf(game), 1);
+  return this.homepageService.deleteFavorite(this.collection);
+
+}
 }
