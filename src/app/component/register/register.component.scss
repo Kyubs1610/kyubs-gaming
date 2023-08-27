@@ -1,14 +1,16 @@
 main{
+    overflow: hidden; 
+    overflow-y: hidden; 
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    width: 100vw;
+    
 }
 
 .wrapper{
     overflow-y: hidden; /* Hide vertical scrollbar */
-    width: 30%;}
+    }
 .container{
     background: rgba( 255, 255, 255, 0.35 );
     box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
@@ -17,15 +19,15 @@ main{
     border-radius: 10px;
     border: 1px solid rgba( 255, 255, 255, 0.18 );
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 20px;
+    flex-direction: column;
+    padding: 40px;
+    margin: 0 1rem;
     overflow: hidden; 
     overflow-y: hidden; 
-    @media(max-width: 768px){
-        width: 70%;
-    }
+    gap:1.5rem;
+    
 
     
     span{

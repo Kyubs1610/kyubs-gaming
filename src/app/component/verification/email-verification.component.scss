@@ -19,13 +19,11 @@ main{
     justify-content: center;
     flex-direction: column;
     padding: 20px;
-    width: 40%;
+    margin: 0 1rem;
     overflow: hidden; 
     overflow-y: hidden; 
     gap:1.5rem;
-    @media(max-width: 768px){
-        width: 70%;
-    }
+
     img{
         width: 30%;
         height: 30%;

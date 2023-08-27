@@ -300,5 +300,20 @@ li{
   h1{
     font-size: 3rem
   }
+.containerpicture{
+  height: 50%;
+  width: 50%;
+}
+.containerinfo{
+  width: 100%;
+  margin: 2rem 0;
+}
+.containercontent{
+  flex-direction: column;
+}
+.wishlist{
+  width: 100%;
+  margin: 2rem 0;
+}
   
 }
