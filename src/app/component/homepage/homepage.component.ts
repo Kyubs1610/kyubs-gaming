@@ -43,6 +43,15 @@ isFavorited : { [gameId: string]: boolean } = {};;
   ) { }
 
   ngOnInit(): void {
+  // Retrieve favorited game IDs from local storage
+  const favoritedGameIds: string[] = JSON.parse(localStorage.getItem('favoritedGameIds') ?? '[]');
+  
+  // Initialize isFavorited object based on stored game IDs
+  this.isFavorited = {};
+  favoritedGameIds.forEach((id: string) => {
+    this.isFavorited[id] = true;
+  });
+  
     this.authService.getCurrentUser().subscribe((user) => {
       this.user = user;
       console.log(this.user.uid);
@@ -129,13 +138,28 @@ isFavorited : { [gameId: string]: boolean } = {};;
     console.log(gameId)
     this.isFavorited[gameId] = !this.isFavorited[gameId];
     console.log(this.isFavorited);
+  
+     // Update local storage with the favorited game IDs
+    const favoritedGameIds = Object.keys(this.isFavorited).filter(id => this.isFavorited[id]);
+    localStorage.setItem('favoritedGameIds', JSON.stringify(favoritedGameIds));
+
     this.collection = this.userInfo.collection;
-    this.collection.push(game.short_screenshots[0]?.image);
+  
+    if (this.isFavorited[gameId]) {
+      // If the game is favorited, add it to the collection
+      this.collection.push(game.short_screenshots[0]?.image);
+    } else {
+      // If the game is unfavorited, remove it from the collection
+      const gameIndex = this.collection.indexOf(game.short_screenshots[0]?.image);
+      if (gameIndex !== -1) {
+        this.collection.splice(gameIndex, 1);
+      }
+    }
+  
     console.log(this.collection);
-
     return this.homepageService.updateFavorite(this.collection);
-
   }
+  
 
 
 

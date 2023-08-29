@@ -215,8 +215,7 @@ height: 30dvh;
   top: 10px;
   right: 10px;
   cursor: pointer;
-  &[src*="favoritered"]{
-  height: auto;  }
+ 
 }
   
   @media screen and (max-width: 768px) {
@@ -306,5 +305,6 @@ font-size: 10px
      }
  
  }
+
 
   }

@@ -83,9 +83,7 @@
             <div class="game_card" [style.backgroundImage]="'url(' + game.background_image + ')'">
                 <img class="favorite"
                 [src]="isFavorited[game.id] ? '../../../assets/profile/favoritered.png' : '../../../assets/profile/favorite.svg'"
-        (click)="toggleFavorite(game)"
-      >
-
+                (click)="toggleFavorite(game)">
             <div class="top-layout">
                 <h2>{{game.name}}</h2>
                 Plateform : <span *ngFor="let platform of game.platforms">{{ platform.platform.name }}, </span> <br>
