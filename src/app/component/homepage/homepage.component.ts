@@ -4,6 +4,7 @@ import { AuthService } from '../../services/login/login.service'
 import { UserinfoService } from 'src/app/services/userinfo/userinfo.service';
 import { Router } from '@angular/router';
 
+
 @Component({
   selector: 'app-homepage',
   templateUrl: './homepage.component.html',
@@ -30,6 +31,8 @@ export class HomepageComponent implements OnInit {
          };
 
 collection: any[] = []; 
+
+isFavorited : { [gameId: string]: boolean } = {};;
 
 
   constructor(
@@ -120,10 +123,11 @@ collection: any[] = [];
     this.router.navigate(['/dashboard']); 
   }
 
-  isFavorited = false;
 
   toggleFavorite(game: any) {
-    this.isFavorited = !this.isFavorited;
+    const gameId = game.id;
+    console.log(gameId)
+    this.isFavorited[gameId] = !this.isFavorited[gameId];
     console.log(this.isFavorited);
     this.collection = this.userInfo.collection;
     this.collection.push(game.short_screenshots[0]?.image);
