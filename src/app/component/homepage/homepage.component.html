@@ -80,7 +80,7 @@
 <div class="container">
     <ul>
         <li *ngFor="let game of games">
-            <div class="game_card" [style.backgroundImage]="'url(' + game.short_screenshots[0]?.image + ')'">
+            <div class="game_card" [style.backgroundImage]="'url(' + game.background_image + ')'">
                 <img class="favorite"
                 [src]="isFavorited[game.id] ? '../../../assets/profile/favoritered.png' : '../../../assets/profile/favorite.svg'"
         (click)="toggleFavorite(game)"
