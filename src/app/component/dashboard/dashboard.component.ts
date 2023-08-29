@@ -53,11 +53,10 @@ ngOnInit() {
     this.authService.logout();
   }
 
-deleteGame(game: any) {
-  this.collection = this.userInfo.collection;
-  console.log(this.collection);
-  this.collection.splice(this.collection.indexOf(game), 1);
-  return this.homepageService.deleteFavorite(this.collection);
-
-}
+  deleteGame(gameIndex: number) {
+    this.collection = this.userInfo.collection;
+    console.log(this.collection);
+    this.collection.splice(gameIndex, 1); // Remove the game at the specified index
+    return this.homepageService.deleteFavorite(this.collection);
+  }
 }

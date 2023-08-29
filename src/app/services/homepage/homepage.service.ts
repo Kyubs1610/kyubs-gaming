@@ -114,11 +114,11 @@ updateFavorite(collection: Array<string>) {
     }
   });
 }
-deleteFavorite(game: any) {
+deleteFavorite(games: any) {
   return this.fireauth.currentUser.then((user) => {
     if (user) {
       const userUid = user.uid;
-      return this.firestore.collection('userInfo').doc(userUid).update({ collection: game });
+      return this.firestore.collection('userInfo').doc(userUid).update({ collection: games });
     } else {
       return Promise.resolve(); // Return an empty promise if the user is not logged in
     }
