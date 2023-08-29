@@ -6,6 +6,7 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AuthService } from '../login/login.service';
 import { UserinfoService } from '../userinfo/userinfo.service';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -41,10 +42,16 @@ games!: any[];
       .set('key', this.apiKey)
       .set('search', searchQuery)
       .set('search_precise', 'true')
-      .set('metacritic', '1,100')
-      .set ('ordering', '-metacritic');
-    console.log(params);
-    return this.http.get(`https://api.rawg.io/api/games?${params}`);
+      .set('ordering', '-search_exact'); 
+  
+    return this.http.get(`https://api.rawg.io/api/games?${params}`)
+    .pipe(
+      map((response: any) => {
+        // Filter out games with null Metacritic scores
+        const filteredResults = response.results.filter((game: any) => game.rating !== null);
+        return { ...response, results: filteredResults };
+      })
+    );
   }
 
   getGenres(): Observable<any> {
