@@ -54,11 +54,16 @@ button{
 }
 
 @media screen and (max-width: 768px) { 
-    *{
+    .dialog-actions{
         background-color: #4b4a4a; 
       }
+    .dialog-actions{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
     .dialog-content {
-        height: 90dvh  ;
+        height: 100dvh  ;
     }
     
 }
