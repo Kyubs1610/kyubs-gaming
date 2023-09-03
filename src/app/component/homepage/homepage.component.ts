@@ -135,15 +135,22 @@ isFavorited : { [gameId: string]: boolean } = {};;
 
   toggleFavorite(game: any) {
     const gameId = game.id;
-    console.log(gameId)
+    console.log(gameId);
+    
+    // Initialize this.collection if it's undefined
+    if (!this.collection) {
+      this.collection = [];
+    }
+  
     this.isFavorited[gameId] = !this.isFavorited[gameId];
     console.log(this.isFavorited);
   
-     // Update local storage with the favorited game IDs
+    // Update local storage with the favorited game IDs
     const favoritedGameIds = Object.keys(this.isFavorited).filter(id => this.isFavorited[id]);
     localStorage.setItem('favoritedGameIds', JSON.stringify(favoritedGameIds));
-
-    this.collection = this.userInfo.collection;
+  
+    // Ensure that this.userInfo.collection is also initialized
+    this.collection = this.userInfo.collection || [];
   
     if (this.isFavorited[gameId]) {
       // If the game is favorited, add it to the collection
@@ -159,6 +166,7 @@ isFavorited : { [gameId: string]: boolean } = {};;
     console.log(this.collection);
     return this.homepageService.updateFavorite(this.collection);
   }
+  
   
 
 

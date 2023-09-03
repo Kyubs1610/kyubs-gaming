@@ -34,17 +34,22 @@ saveProfile() {
     ? this.userinfo.updateAvatar(this.selectedAvatar)
     : Promise.resolve(); // Resolve if no avatar selected
 
-  avatarUpdatePromise.then(() => {
-    return this.userinfo.updatePseudo(this.users.pseudo);
-  }).then(() => {
-    alert('Profile updated successfully');
-    // Reload the entire page to reflect changes
-    document.location.reload();
-  }).catch(error => {
-    console.error('Error updating profile:', error);
-    alert('Something went wrong');
-  });
+  const updatePseudoPromise = this.selectedAvatar
+    ? Promise.resolve() // Skip updating pseudo if avatar is being updated
+    : this.userinfo.updatePseudo(this.users.pseudo);
+
+  Promise.all([avatarUpdatePromise, updatePseudoPromise])
+    .then(() => {
+      alert('Profile updated successfully');
+      // Reload the entire page to reflect changes
+      document.location.reload();
+    })
+    .catch(error => {
+      console.error('Error updating profile:', error);
+      alert('Something went wrong');
+    });
 }
+
 
 
 

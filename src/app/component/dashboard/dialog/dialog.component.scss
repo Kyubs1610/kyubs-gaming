@@ -53,3 +53,11 @@ button{
   background-color: #4b4a4a; 
 }
 
+@media screen and (max-width: 768px) { 
+    
+    .dialog-content {
+        height: 100dvh  ;
+    }
+    
+}
+
