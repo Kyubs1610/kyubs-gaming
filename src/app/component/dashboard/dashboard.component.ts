@@ -18,10 +18,12 @@ export class DashboardComponent  {
           pseudo: '',
           email: '',
          };
-  userInfo: any;
+  userInfo?: any;
   games!: any[];
-  collection: any[] = []; 
+  collection?: any
   hasPseudo = !!this.users.pseudo;
+  gameId!: number;
+
 
   constructor(private userinfo: UserinfoService,
               private authService: AuthService,
@@ -32,10 +34,8 @@ export class DashboardComponent  {
 ngOnInit() {
   this.authService.getCurrentUser().subscribe((user) => {
     this.user = user;
-    console.log(this.user.uid);
     this.userinfo.getUserData(this.user?.uid).subscribe((userData) => {
       this.userInfo = userData.data();
-      console.log(this.userInfo);
     this.games = this.userInfo.collection;
     });
   });
@@ -58,11 +58,15 @@ openDialog(): void {
   logout() {
     this.authService.logout();
   }
+  getObjectKeys(collection: any): string[] {
+    return Object.keys(collection);
+  }
+  
 
-  deleteGame(gameIndex: number) {
+  deleteGame(key: string) {
     this.collection = this.userInfo.collection;
     console.log(this.collection);
-    this.collection.splice(gameIndex, 1); // Remove the game at the specified index
+    delete this.collection[key]; // Remove the game with the given ID from the collection
     return this.homepageService.deleteFavorite(this.collection);
   }
 }

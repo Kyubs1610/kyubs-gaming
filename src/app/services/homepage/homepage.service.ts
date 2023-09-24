@@ -17,6 +17,7 @@ genre!: string;
 user: any;
 userInfo: any;
 games!: any[];
+collection: any;
 
   constructor(
     private http: HttpClient,
@@ -111,7 +112,7 @@ console.log(params);
 return this.http.get(`https://api.rawg.io/api/games?${params}`)
 }
 
-updateFavorite(collection: Array<string>) {
+updateFavorite(collection: any) {
   return this.fireauth.currentUser.then((user) => {
     if (user) {
       return this.firestore.collection('userInfo').doc(user.uid).update({ collection: collection });

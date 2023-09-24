@@ -86,4 +86,8 @@ export class ProfileComponent {
   redirectToDashboard() {
     this.router.navigate(['/dashboard']); 
   }
+  getObjectKeys(collection: any): string[] {
+    return Object.keys(collection);
+  }
+  
 }

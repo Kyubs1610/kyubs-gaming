@@ -23,14 +23,14 @@ export class HomepageComponent implements OnInit {
           avatar:'',
           pseudo: '',
           email: '',
-          collection: [
-            {
-              background_image: '',
-            }
-          ],
+          collection: {
+            id: '',
+            name: '',
+            image: '',
+          }
          };
 
-collection: any[] = []; 
+collection: any;
 
 isFavorited : { [gameId: string]: boolean } = {};;
 
@@ -136,11 +136,15 @@ isFavorited : { [gameId: string]: boolean } = {};;
   toggleFavorite(game: any) {
     const gameId = game.id;
     console.log(gameId);
-    
-    // Initialize this.collection if it's undefined
-    if (!this.collection) {
-      this.collection = [];
-    }
+  
+    // Create an object with the game data
+    const gameData = {
+      id: game.id,
+      name: game.name,
+      image: game.short_screenshots[0]?.image,
+    };
+  
+    console.log(gameData);
   
     this.isFavorited[gameId] = !this.isFavorited[gameId];
     console.log(this.isFavorited);
@@ -150,25 +154,23 @@ isFavorited : { [gameId: string]: boolean } = {};;
     localStorage.setItem('favoritedGameIds', JSON.stringify(favoritedGameIds));
   
     // Ensure that this.userInfo.collection is also initialized
-    this.collection = this.userInfo.collection || [];
+    this.collection = this.userInfo.collection || {};
   
+    // If the game is favorited, add it to the collection
     if (this.isFavorited[gameId]) {
-      // If the game is favorited, add it to the collection
-      this.collection.push(game.short_screenshots[0]?.image);
+      this.collection[gameId] = gameData;
     } else {
-      // If the game is unfavorited, remove it from the collection
-      const gameIndex = this.collection.indexOf(game.short_screenshots[0]?.image);
-      if (gameIndex !== -1) {
-        this.collection.splice(gameIndex, 1);
-      }
+      // Otherwise, remove it from the collection
+      delete this.collection[gameId];
     }
+
   
     console.log(this.collection);
-    return this.homepageService.updateFavorite(this.collection);
+  
+    // Send the entire updated collection to the service
+    this.homepageService.updateFavorite(this.collection);
   }
   
   
-
-
 
 }

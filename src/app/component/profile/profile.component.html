@@ -48,8 +48,8 @@
     <img class="containerpicture rond" [src]="userInfo.avatar"> 
     <div class="text-container">
     <h2  class="containertitle"> <span> Pseudo : </span>{{ userInfo.pseudo }} </h2>
-    <h2  class="containertitle"> <span> Follower :  </span>{{ userInfo.follower }} </h2>
-    <h2  class="containertitle"> <span> Following : </span>{{ userInfo.following }} </h2>
+    <h2  class="containertitle"> <span> Follower :  </span>{{ userInfo.followers?.length }} </h2>
+    <h2  class="containertitle"> <span> Following : </span>{{ userInfo.following?.length }} </h2>
     <button class="follow" mat-raised-button color="primary" (click)="toggleFollow(userId)">{{ followButtonText }}</button>
 
 </div>
@@ -60,9 +60,12 @@
 <div class="wishlist" > 
     <h2 class="wishlisttitle"> TO DO LIST </h2>
     <ul>
-        <li *ngFor="let userCollection of userInfo?.collection; let i = index">
-          <img class="game_cards" [src]="userCollection" *ngIf="userCollection">
-        </li>
-      </ul>
-      
-</div>
+      <li *ngFor="let key of getObjectKeys(userInfo?.collection || {} )">
+          <div class="game_cards" [style.backgroundImage]="'url(' + userInfo?.collection[key]?.image+ ')'" *ngIf="userInfo?.collection[key]?.image" alt="Game Image">
+          <div class="top-layout">
+            <p>{{userInfo?.collection[key]?.name}}</p>
+          </div>
+          </div>
+      </li>
+    </ul>
+  </div>

@@ -257,15 +257,16 @@ li{
 
 }
 .deleteButton {
+  height:30px;
+  width: 30px;
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  cursor: pointer;
   background-color: transparent; /* Transparent background */
   border: none; /* Remove border */
-  cursor: pointer; /* Show pointer cursor */
   outline: none; /* Remove focus outline */
-  padding: 0; /* Remove default padding */
-  position: absolute; /* Position the close button */
-  right: 0; /* Position the close button 20px from the right */
-  top: 0;
-  margin: 0.5rem;
+
   &:hover{
     color: #033f68;
     text-decoration: none;
@@ -306,6 +307,23 @@ li{
       }
 
 }
+
+
+
+.game_cards:hover .top-layout {
+  opacity: 0.8 !important;
+  backdrop-filter: blur( 4px );
+  background-color: #000000;
+}
+.top-layout {
+  opacity: 0;
+  position: absolute;
+  bottom: 0;
+  text-align: center;
+  width: 99%;
+
+}
+
 
 @keyframes floating {
   0% {
