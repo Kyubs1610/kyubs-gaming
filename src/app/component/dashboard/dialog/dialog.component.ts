@@ -34,12 +34,9 @@ export class DialogComponent {
 ngOnInit() {
   this.authService.getCurrentUser().subscribe((user) => {
     this.user = user;
-    console.log(this.user.uid);
     this.userinfo.getUserData(this.user?.uid).subscribe((userData) => {
       this.userInfo = userData.data() as { avatar: string; pseudo: string; };
-      console.log(this.userInfo);
-    });
-
+        });
   });
 }
 
