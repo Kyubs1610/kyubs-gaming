@@ -9,12 +9,20 @@
     <img class="profile circle" tabindex="0" src="https://i.ibb.co/fdfCLQF/samurai1.png"(click)="selectProfilePicture('https://i.ibb.co/fdfCLQF/samurai1.png')"/>
   </div> 
 </div>
-<h2 mat-dialog-title class="container dialog-title"> Choose your pseudo here</h2>
-<div class="container dialog-action">
-<input type="text" class="input" [(ngModel)]="users.pseudo" placeholder="Your pseudo" />
-</div><br>
+<div class="container dialog-action" *ngIf="!userInfo?.pseudo">
+<h2 mat-dialog-title class="container dialog-title">Choose your pseudo here : </h2>
+  <input
+    type="text"
+    class="input"
+    [(ngModel)]="users.pseudo"
+    placeholder="Your pseudo"
+  />
+</div>
+<div *ngIf="userInfo?.pseudo">
+</div> <br>
+
 <hr>
-<div mat-dialog-actions class="container dialog-actions">
+<div mat-dialog-actions class="container dialog-action">
   <button mat-button mat-dialog-close (click)="saveProfile()" >Save</button>
   <button mat-button mat-dialog-close>Cancel</button>
 </div>

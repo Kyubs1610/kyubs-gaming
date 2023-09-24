@@ -271,7 +271,41 @@ li{
     text-decoration: none;
   }
 }
+.follow{
+        background-color: #ffffff;
+        color: #000000;
+        border: none;
+        border-radius: 5px;
+        padding: 0 15px;
+        font-size: 0.8rem;
+        font-weight: 600;
+        margin: 0.5rem;
+        cursor: pointer;
+        transition: all 0.3s ease-in-out;
+         &:hover{
+          background-color: #000000;
+          color: #ffffff;
+      }
+}
 
+.unfollow{
+  display: none;
+  background-color: #000000;
+        color: #ffffff;
+        border: none;
+        border-radius: 5px;
+        padding: 0 15px;
+        font-size: 0.8rem;
+        font-weight: 600;
+        margin: 0.5rem;
+        cursor: pointer;
+        transition: all 0.3s ease-in-out;
+         &:hover{
+          background-color: #ffffff;
+          color: #000000;
+      }
+
+}
 
 @keyframes floating {
   0% {

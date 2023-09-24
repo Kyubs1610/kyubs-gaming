@@ -36,20 +36,21 @@
     </div>
 </div>
 
-<div class="title" *ngIf="userInfo"> 
-    <h1> Welcome {{ userInfo.pseudo }} </h1>
-    <button mat-raised-button color="primary" class="soloButton logoutButton" (click)="logout()">Log Out</button>
+<div class="title" *ngIf="user"> 
+    <h1> Welcome {{ user.pseudo }} </h1>
+    <img class="profile rond" [src]="user?.avatar" (click)="redirectToDashboard()"> 
+
+    <button mat-raised-button color="primary" class="soloButton logoutButton" (click)="logout()">
+        <mat-icon>exit_to_app</mat-icon></button>
 </div>
 <main class="containerinfo"> 
 <div  class="containercontent" *ngIf="userInfo">
-    <img class="containerpicture rond" [src]="userInfo.avatar" (click)="openDialog()"> 
+    <img class="containerpicture rond" [src]="userInfo.avatar"> 
     <div class="text-container">
     <h2  class="containertitle"> <span> Pseudo : </span>{{ userInfo.pseudo }} </h2>
-    <h2  class="containertitle"> <span> Email : </span> {{ userInfo.email }} </h2>
-    <h2  class="containertitle"> <span> Follower : </span> {{ userInfo.follower }} </h2>
-    <h2  class="containertitle"> <span> Following : </span> {{ userInfo.following }} </h2>
-
-    <a routerLink="/forgot-password">Change your Password</a> 
+    <h2  class="containertitle"> <span> Follower :  </span>{{ userInfo.follower }} </h2>
+    <h2  class="containertitle"> <span> Following : </span>{{ userInfo.following }} </h2>
+    <button class="follow" mat-raised-button color="primary" (click)="toggleFollow(userId)">{{ followButtonText }}</button>
 
 </div>
     
@@ -61,9 +62,6 @@
     <ul>
         <li *ngFor="let userCollection of userInfo?.collection; let i = index">
           <img class="game_cards" [src]="userCollection" *ngIf="userCollection">
-          <button mat-icon-button color="primary" class="deleteButton" (click)="deleteGame(i)">
-            <mat-icon>cancel</mat-icon>
-          </button>
         </li>
       </ul>
       

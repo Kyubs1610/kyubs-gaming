@@ -21,7 +21,7 @@ import { ForgotpasswordComponent } from './component/forgotpassword/forgotpasswo
 import { DashboardComponent } from './component/dashboard/dashboard.component';
 import { DialogComponent } from './component/dashboard/dialog/dialog.component';
 import {MatDialogModule} from '@angular/material/dialog';
-
+import { ProfileComponent } from './component/profile/profile.component';
 
 
 @NgModule({
@@ -34,6 +34,7 @@ import {MatDialogModule} from '@angular/material/dialog';
     ForgotpasswordComponent,
     DashboardComponent,
     DialogComponent,
+    ProfileComponent,
     
     
   ],

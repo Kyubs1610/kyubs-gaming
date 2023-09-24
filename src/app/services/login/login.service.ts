@@ -32,7 +32,11 @@ export class AuthService {
             this.firestore.collection('userInfo').doc(res.user?.uid).set({
               uid: res.user?.uid,
               email: res.user?.email,
-            }).then(() => {
+            })
+            this.firestore.collection('user').doc(res.user?.uid).set({
+              uid: res.user?.uid,
+            })
+            .then(() => {
               this.router.navigate(['homepage']);
             });
           }
@@ -95,6 +99,7 @@ export class AuthService {
       this.router.navigate(['/homepage']);
       localStorage.setItem('token',JSON.stringify(res.user?.uid));
       const userInfo = { uid: res.user?.uid, email: res.user?.email };
+      const user = { uid: res.user?.uid};
 
     // Check if the user already exists in the database
     this.firestore.collection('userInfo').doc(res.user?.uid).get().toPromise().then(doc => {
@@ -104,6 +109,7 @@ export class AuthService {
       } else {
         // User doesn't exist, perform a set
         this.firestore.collection('userInfo').doc(res.user?.uid).set(userInfo);
+        this.firestore.collection('user').doc(res.user?.uid).set(user)
       }
     });
   

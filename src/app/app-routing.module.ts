@@ -7,6 +7,7 @@ import { AuthGuardService } from '../app/auth/auth-guard.service';
 import { EmailVerificationComponent } from './component/verification/email-verification.component';
 import { ForgotpasswordComponent } from './component/forgotpassword/forgotpassword.component';
 import { DashboardComponent } from './component/dashboard/dashboard.component';
+import { ProfileComponent } from './component/profile/profile.component';
 
 const routes: Routes = [
 
@@ -38,6 +39,12 @@ const routes: Routes = [
   canActivate: [AuthGuardService]
 
   },
+
+{
+  path:'profile/:userId',
+  component: ProfileComponent,
+  canActivate : [AuthGuardService]
+}
 ];
 
 @NgModule({

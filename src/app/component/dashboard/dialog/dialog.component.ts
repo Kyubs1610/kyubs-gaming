@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
-import {MatDialog} from '@angular/material/dialog';
+import { Component, Inject } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { UserinfoService } from 'src/app/services/userinfo/userinfo.service';
+import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/login/login.service';
 
 @Component({
   selector: 'app-dialog',
@@ -17,11 +19,29 @@ export class DialogComponent {
     pseudo: '',
     email: '',
    };
-  userInfo: any;
+  userInfo = {
+    avatar:'',
+    pseudo: '',
+   } ;
+  user: any;
 
-  constructor(public dialogRef: MatDialog,
-              private userinfo: UserinfoService) {}
+  constructor( public dialogRef: MatDialogRef<DialogComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: { users: any,  },
+              private userinfo: UserinfoService,
+              private router : Router,
+              private authService : AuthService) {}
 
+ngOnInit() {
+  this.authService.getCurrentUser().subscribe((user) => {
+    this.user = user;
+    console.log(this.user.uid);
+    this.userinfo.getUserData(this.user?.uid).subscribe((userData) => {
+      this.userInfo = userData.data() as { avatar: string; pseudo: string; };
+      console.log(this.userInfo);
+    });
+
+  });
+}
 
 
 selectProfilePicture(selectedAvatar: string) {
@@ -30,27 +50,22 @@ selectProfilePicture(selectedAvatar: string) {
 }
 
 saveProfile() {
-  const avatarUpdatePromise = this.selectedAvatar
-    ? this.userinfo.updateAvatar(this.selectedAvatar)
-    : Promise.resolve(); // Resolve if no avatar selected
-
-  const updatePseudoPromise = this.selectedAvatar
-    ? Promise.resolve() // Skip updating pseudo if avatar is being updated
-    : this.userinfo.updatePseudo(this.users.pseudo);
-
-  Promise.all([avatarUpdatePromise, updatePseudoPromise])
-    .then(() => {
-      alert('Profile updated successfully');
-      // Reload the entire page to reflect changes
-      document.location.reload();
-    })
-    .catch(error => {
-      console.error('Error updating profile:', error);
-      alert('Something went wrong');
+  if (this.selectedAvatar) {
+    this.users.avatar = this.selectedAvatar;
+    this.userinfo.updateAvatar(this.users.avatar).then(() => {
+      // Update the user's avatar and close the dialog
+      this.dialogRef.close(this.users);
     });
+  }
+  if (this.users.pseudo) {
+    this.userinfo.updatePseudo(this.users.pseudo).then(() => {
+      // Update the user's pseudo and close the dialog
+      this.dialogRef.close(this.users);
+    });
+  }
+ // if any update on the pseudo or avatar, reload the page
+  this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+    this.router.navigate(['/dashboard']);
+  });
 }
-
-
-
-
 }

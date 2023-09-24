@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { UserinfoService } from 'src/app/services/userinfo/userinfo.service';
 import { AuthService } from 'src/app/services/login/login.service';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { DialogComponent } from './dialog/dialog.component';
 import { HomepageService } from 'src/app/services/homepage/homepage.service';
 
@@ -21,6 +21,7 @@ export class DashboardComponent  {
   userInfo: any;
   games!: any[];
   collection: any[] = []; 
+  hasPseudo = !!this.users.pseudo;
 
   constructor(private userinfo: UserinfoService,
               private authService: AuthService,
@@ -40,14 +41,19 @@ ngOnInit() {
   });
 }
 
-  openDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
-    this.dialog.open(DialogComponent, {
-      width: 'auto',
-      enterAnimationDuration,
-      exitAnimationDuration,
-      panelClass: "myClass"
-    });
-  }
+openDialog(): void {
+  const dialogRef: MatDialogRef<DialogComponent> = this.dialog.open(DialogComponent, {
+    width: 'auto',
+    data: { users: this.users},
+  });
+
+  dialogRef.afterClosed().subscribe(updatedUserData => {
+    console.log('The dialog was closed');
+    if (updatedUserData) {
+      this.users = updatedUserData;
+    }
+  });
+}
 
   logout() {
     this.authService.logout();
