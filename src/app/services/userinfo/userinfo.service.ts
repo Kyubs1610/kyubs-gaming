@@ -10,37 +10,24 @@ import { AuthService } from '../login/login.service';
 
 export class UserinfoService {
 
+  user: any;
+  userInfos: any;
+  userInfo: any;
+
   constructor(private firestore: AngularFirestore,
               private fireauth: AngularFireAuth,
               private authService: AuthService) {}
+
+
 
 getUserData(uid: string) {
   return this.firestore.collection('userInfo').doc(uid).get();
 }
 
 getProfileData(uid: string) {
-  return this.firestore.collection('user').doc(uid).get();
+  return this.firestore.collection('userInfo').doc(uid).get();
 }
-
-loadUserData() {
-   this.authService.getCurrentUser().subscribe((user) => {
-    if (user) {
-      console.log('User is authenticated:', user);
-
-      this.getProfileData(user.uid).subscribe((userData) => {
-        if (userData.exists) {
-          console.log('User data retrieved:', userData.data());
-          // You can assign userData.data() to a different variable for use in your component.
-        } else {
-          console.log('User data not found.');
-        }
-      });
-    } else {
-      console.log('User is not authenticated.');
-    }
-  });
-}
-              
+          
 updatePseudo(pseudo: string) {
   return this.fireauth.currentUser.then((user) => {
     if (user) {
@@ -78,13 +65,70 @@ updateAvatar(avatarLink: string) {
   });
 }
 
+followUserService(userId: string, userInfos: any, userInfo: any) {
+this.userInfos = userInfos;
+  // Update the currently logged-in user's "following" array with the user they are following (userId)
+  const updatedFollowing = this.userInfos.following || [];
+  if (!updatedFollowing.includes(userId)) {
+    // Ajouter le nouvel utilisateur à la liste des suivis
+    updatedFollowing.push(userId);
 
-followUser(userId: string) {
-  const documentId = 'uniqueDocumentId';
-  return this.firestore.collection('userInfo').doc(documentId).update({ followers: userId });
+  this.firestore
+    .collection('userInfo')
+    .doc(this.userInfos.uid) // Specify the document ID (UID of the currently logged-in user)
+    .update({ following: updatedFollowing })
+    .then(() => {
+      console.log(`Following user with ID: ${userId}`);
+    })
+    .catch((error) => {
+      console.error('Error following user:', error);
+    });
+  }
+    this.userInfo = userInfo;
+  // Update the other user's "followers" array with the follower (current user's UID)
+  const updatedFollowers = [this.userInfos.uid];
+  console.log(updatedFollowers);
+  this.firestore
+    .collection('userInfo')
+    .doc(this.userInfo.uid) // Specify the document ID (UID of the user being followed)
+    .update({ followers: updatedFollowers })
+    .then(() => {
+      console.log(`Updated followers for user with ID: ${userId}`);
+    })
+    .catch((error) => {
+      console.error('Error updating followers:', error);
+    });
 }
-unfollowUser(userId: string) {
-  return this.firestore.collection('userInfo').doc().update({ followers: userId });
+
+
+unfollowUserService(userId: string, userInfos: any, userInfo: any) {
+this.userInfos = userInfos;
+  // Update the currently logged-in user's "following" array by removing the unfollowed user (userId)
+  const updatedFollowing = this.userInfos.following.filter((id:string) => id !== userId);
+  this.firestore
+    .collection('userInfo')
+    .doc(this.userInfos.uid) // Specify the document ID (UID of the currently logged-in user)
+    .update({ following: updatedFollowing })
+    .then(() => {
+      console.log(`Unfollowing user with ID: ${userId}`);
+    })
+    .catch((error) => {
+      console.error('Error unfollowing user:', error);
+    });
+
+    this.userInfo = userInfo;
+  // Update the other user's "followers" array by removing the unfollower (current user's UID)
+  const updatedFollowers = this.userInfo.followers.filter((id:string) => id !== this.userInfo.uid);
+  this.firestore
+    .collection('userInfo')
+    .doc(this.userInfo.uid) // Specify the document ID (UID of the user being unfollowed)
+    .update({ followers: updatedFollowers })
+    .then(() => {
+      console.log(`Updated followers for user with ID: ${userId}`);
+    })
+    .catch((error) => {
+      console.error('Error updating followers:', error);
+    });
 }
 
 

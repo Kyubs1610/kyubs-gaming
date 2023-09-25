@@ -46,8 +46,8 @@
     <div class="text-container">
     <h2  class="containertitle"> <span> Pseudo : </span>{{ userInfo.pseudo }} </h2>
     <h2  class="containertitle"> <span> Email : </span> {{ userInfo.email }} </h2>
-    <h2  class="containertitle"> <span> Follower : </span> {{ userInfo.followers.lenght }} </h2>
-    <h2  class="containertitle"> <span> Following : </span> {{ userInfo.following.lenght }} </h2>
+    <h2  class="containertitle"> <span> Follower :  </span>{{ userInfo.followers?.length }} </h2>
+    <h2  class="containertitle"> <span> Following : </span>{{ userInfo.following?.length }} </h2>
 
     <a routerLink="/forgot-password">Change your Password</a> 
 

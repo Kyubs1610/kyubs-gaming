@@ -36,12 +36,10 @@
     </div>
 </div>
 
-<div class="title" *ngIf="user"> 
-    <h1> Welcome {{ user.pseudo }} </h1>
-    <img class="profile rond" [src]="user?.avatar" (click)="redirectToDashboard()"> 
-
-    <button mat-raised-button color="primary" class="soloButton logoutButton" (click)="logout()">
-        <mat-icon>exit_to_app</mat-icon></button>
+<div class="title" *ngIf="userInfos"> 
+    <h1> Hello {{ userInfos?.pseudo }} </h1>
+    <button mat-raised-button style="margin-top:2rem" color="primary" class="soloButton logoutButton" (click)="logout()"> Log Out</button>
+    <button mat-raised-button style="margin-top:2rem" color="primary" class="soloButton logoutButton" (click)="logout()"> Log Out</button>
 </div>
 <main class="containerinfo"> 
 <div  class="containercontent" *ngIf="userInfo">

@@ -30,10 +30,8 @@ collection: any;
   ngOnInit() {
     this.authService.getCurrentUser().subscribe((user) => {
       this.user = user;
-      console.log(this.user.uid);
       this.userinfo.getUserData(this.user?.uid).subscribe((userData) => {
         this.userInfo = userData.data();
-        console.log(this.userInfo);
       this.games = this.userInfo.collection;
       });
     });
@@ -59,7 +57,6 @@ collection: any;
     const params = new HttpParams()
       .set('key', this.apiKey)
       .set ('ordering', '-metacritic');
-    console.log(params);
     return this.http.get(`https://api.rawg.io/api/genres?${params}`);
   }
 
@@ -69,7 +66,6 @@ collection: any;
       .set('genres', genre)
       .set('metacritic', '1,100')
       .set ('ordering', '-metacritic');
-      console.log(genre)
     return this.http.get(`https://api.rawg.io/api/games?${params}`);
 }
 
@@ -77,7 +73,6 @@ getPlatforms(): Observable<any> {
   const params = new HttpParams()
     .set('key', this.apiKey)
     .set ('ordering', '-metacritic');
-  console.log(params);
   return this.http.get(`https://api.rawg.io/api/platforms?${params}`);
 }
 
@@ -97,7 +92,6 @@ getGamesByPopularity(): Observable<any> {
     .set('metacritic', '90,100')
     .set('page_size', '40')
     .set ('ordering', '-metacritic');
-console.log(params);
   return this.http.get(`https://api.rawg.io/api/games?${params}`);
 }
 
@@ -108,7 +102,6 @@ getGamesByRating(): Observable<any> {
     .set('page_size', '40')
     .set('metacritic', '1,100')
     .set ('ordering', '-rating');
-console.log(params);
 return this.http.get(`https://api.rawg.io/api/games?${params}`)
 }
 
