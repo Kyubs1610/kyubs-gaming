@@ -78,7 +78,6 @@ this.userInfos = userInfos;
     .doc(this.userInfos.uid) // Specify the document ID (UID of the currently logged-in user)
     .update({ following: updatedFollowing })
     .then(() => {
-      console.log(`Following user with ID: ${userId}`);
     })
     .catch((error) => {
       console.error('Error following user:', error);
@@ -93,10 +92,10 @@ this.userInfos = userInfos;
     .doc(this.userInfo.uid) // Specify the document ID (UID of the user being followed)
     .update({ followers: updatedFollowers })
     .then(() => {
-      console.log(`Updated followers for user with ID: ${userId}`);
     })
     .catch((error) => {
-      console.error('Error updating followers:', error);
+      console.error('Error following user:', error);
+
     });
 }
 
@@ -114,7 +113,6 @@ unfollowUserService(userId: string, userInfos: any, userInfo: any) {
       .doc(this.userInfos.uid)
       .update({ following: updatedFollowing })
       .then(() => {
-        console.log(`Unfollowing user with ID: ${userId}`);
       })
       .catch((error) => {
         console.error('Error unfollowing user:', error);
@@ -131,7 +129,6 @@ unfollowUserService(userId: string, userInfos: any, userInfo: any) {
       .doc(this.userInfo.uid)
       .update({ followers: updatedFollowers })
       .then(() => {
-        console.log(`Updated followers for user with ID: ${userId}`);
       })
       .catch((error) => {
         console.error('Error updating followers:', error);

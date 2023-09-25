@@ -94,19 +94,14 @@ export class ProfileComponent {
   }
   
   followUser(userId: string) {
-
     // Implement logic to follow the user with the provided userId
     this.userinfoService.followUserService(userId, this.userInfos, this.userInfo);
-    console.log(`Following user with ID: ${userId} `);
-    //send to the db the user id of the user that is followed
-
   }
   
   unfollowUser(userId: string) {
     // Implement logic to unfollow the user with the provided userId
     this.userinfoService.unfollowUserService(userId, this.userInfos, this.userInfo);
-    console.log(`Unfollowing user with ID: ${userId}`);
-  }
+      }
   
   redirectToDashboard() {
     this.router.navigate(['/dashboard']); 
