@@ -102,34 +102,43 @@ this.userInfos = userInfos;
 
 
 unfollowUserService(userId: string, userInfos: any, userInfo: any) {
-this.userInfos = userInfos;
-  // Update the currently logged-in user's "following" array by removing the unfollowed user (userId)
-  const updatedFollowing = this.userInfos.following.filter((id:string) => id !== userId);
-  this.firestore
-    .collection('userInfo')
-    .doc(this.userInfos.uid) // Specify the document ID (UID of the currently logged-in user)
-    .update({ following: updatedFollowing })
-    .then(() => {
-      console.log(`Unfollowing user with ID: ${userId}`);
-    })
-    .catch((error) => {
-      console.error('Error unfollowing user:', error);
-    });
+  this.userInfos = userInfos;
+
+  const currentFollowing = this.userInfos.following || [];
+
+  if (currentFollowing.includes(userId)) {
+    const updatedFollowing = currentFollowing.filter((id: string) => id !== userId);
+
+    this.firestore
+      .collection('userInfo')
+      .doc(this.userInfos.uid)
+      .update({ following: updatedFollowing })
+      .then(() => {
+        console.log(`Unfollowing user with ID: ${userId}`);
+      })
+      .catch((error) => {
+        console.error('Error unfollowing user:', error);
+      });
 
     this.userInfo = userInfo;
-  // Update the other user's "followers" array by removing the unfollower (current user's UID)
-  const updatedFollowers = this.userInfo.followers.filter((id:string) => id !== this.userInfo.uid);
-  this.firestore
-    .collection('userInfo')
-    .doc(this.userInfo.uid) // Specify the document ID (UID of the user being unfollowed)
-    .update({ followers: updatedFollowers })
-    .then(() => {
-      console.log(`Updated followers for user with ID: ${userId}`);
-    })
-    .catch((error) => {
-      console.error('Error updating followers:', error);
-    });
+
+    const currentFollowers = this.userInfo.followers || [];
+
+    const updatedFollowers = currentFollowers.filter((id: string) => id !== this.userInfos.uid);
+
+    this.firestore
+      .collection('userInfo')
+      .doc(this.userInfo.uid)
+      .update({ followers: updatedFollowers })
+      .then(() => {
+        console.log(`Updated followers for user with ID: ${userId}`);
+      })
+      .catch((error) => {
+        console.error('Error updating followers:', error);
+      });
+  }
 }
+
 
 
 }
