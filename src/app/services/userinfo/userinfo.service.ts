@@ -11,7 +11,9 @@ import { AuthService } from '../login/login.service';
 export class UserinfoService {
 
   user: any;
-  userInfos: any;
+  // userInfos: any;
+  connectedUser: any;
+
   userInfo: any;
 
   constructor(private firestore: AngularFirestore,
@@ -65,76 +67,94 @@ updateAvatar(avatarLink: string) {
   });
 }
 
-followUserService(userId: string, userInfos: any, userInfo: any) {
-this.userInfos = userInfos;
-  // Update the currently logged-in user's "following" array with the user they are following (userId)
-  const updatedFollowing = this.userInfos.following || [];
-  if (!updatedFollowing.includes(userId)) {
-    // Ajouter le nouvel utilisateur à la liste des suivis
-    updatedFollowing.push(userId);
+followUserService(userId: string, connectedUser: any, userInfo: any) {
+  // Assurez-vous que userInfos contient les données de l'utilisateur connecté
+  this.connectedUser = connectedUser;
+  console.log('connected user', this.connectedUser);
 
-  this.firestore
-    .collection('userInfo')
-    .doc(this.userInfos.uid) // Specify the document ID (UID of the currently logged-in user)
-    .update({ following: updatedFollowing })
-    .then(() => {
-    })
-    .catch((error) => {
-      console.error('Error following user:', error);
+  // Mise à jour du tableau "following" de l'utilisateur connecté
+  const updatedFollowing = this.connectedUser.following || [];
+
+  if (!updatedFollowing.some((following: { uid: string }) => following.uid === userId)) {
+    updatedFollowing.push({
+      uid: userId,
+      pseudo: userInfo.pseudo, // Assurez-vous que userInfo contient les données correctes
+      avatar: userInfo.avatar,
     });
-  }
-    this.userInfo = userInfo;
-  // Update the other user's "followers" array with the follower (current user's UID)
-  const updatedFollowers = [this.userInfos.uid];
-  console.log(updatedFollowers);
-  this.firestore
-    .collection('userInfo')
-    .doc(this.userInfo.uid) // Specify the document ID (UID of the user being followed)
-    .update({ followers: updatedFollowers })
-    .then(() => {
-    })
-    .catch((error) => {
-      console.error('Error following user:', error);
-
-    });
-}
-
-
-unfollowUserService(userId: string, userInfos: any, userInfo: any) {
-  this.userInfos = userInfos;
-
-  const currentFollowing = this.userInfos.following || [];
-
-  if (currentFollowing.includes(userId)) {
-    const updatedFollowing = currentFollowing.filter((id: string) => id !== userId);
 
     this.firestore
       .collection('userInfo')
-      .doc(this.userInfos.uid)
+      .doc(this.connectedUser.uid)
       .update({ following: updatedFollowing })
-      .then(() => {
-      })
+      .then(() => {})
       .catch((error) => {
-        console.error('Error unfollowing user:', error);
+        console.error('Error following user:', error);
       });
+  }
 
-    this.userInfo = userInfo;
+  // Assurez-vous que userInfo contient les données du profil utilisateur à suivre
+  this.userInfo = userInfo;
+  console.log('user to follow', this.userInfo);
 
-    const currentFollowers = this.userInfo.followers || [];
+  // Mise à jour du tableau "followers" du profil utilisateur à suivre
+  const updatedFollowers = this.userInfo.followers || [];
 
-    const updatedFollowers = currentFollowers.filter((id: string) => id !== this.userInfos.uid);
+  if (!updatedFollowers.some((follower: { uid: string }) => follower.uid === this.connectedUser.uid)) {
+    updatedFollowers.push({
+      uid: this.connectedUser.uid,
+      pseudo: this.connectedUser.pseudo,
+      avatar: this.connectedUser.avatar,
+    });
 
     this.firestore
       .collection('userInfo')
       .doc(this.userInfo.uid)
       .update({ followers: updatedFollowers })
-      .then(() => {
-      })
+      .then(() => {})
       .catch((error) => {
-        console.error('Error updating followers:', error);
+        console.error('Error following user:', error);
       });
   }
 }
+
+// La fonction unfollowUserService semble correcte et ne nécessite pas de modifications.
+
+
+unfollowUserService(userId: string, connectedUser: any, userInfo: any) {
+  this.connectedUser = connectedUser;
+
+  // Remove the user being unfollowed from the currently logged-in user's "following" array
+  const updatedFollowing = (this.connectedUser.following || []).filter(
+    (following: { uid: string }) => following.uid !== userId
+  );
+
+  this.firestore
+    .collection('userInfo')
+    .doc(this.connectedUser.uid)
+    .update({ following: updatedFollowing })
+    .then(() => {})
+    .catch((error) => {
+      console.error('Error unfollowing user:', error);
+    });
+
+  this.userInfo = userInfo;
+
+  // Remove the current user from the other user's "followers" array
+  const updatedFollowers = (this.userInfo.followers || []).filter(
+    (follower: { uid: string }) => follower.uid !== this.connectedUser.uid
+  );
+
+  this.firestore
+    .collection('userInfo')
+    .doc(this.userInfo.uid)
+    .update({ followers: updatedFollowers })
+    .then(() => {})
+    .catch((error) => {
+      console.error('Error unfollowing user:', error);
+    });
+}
+
+
 
 
 

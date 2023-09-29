@@ -101,10 +101,14 @@ export class ProfileComponent {
   unfollowUser(userId: string) {
     // Implement logic to unfollow the user with the provided userId
     this.userinfoService.unfollowUserService(userId, this.userInfos, this.userInfo);
-      }
+
+  }
   
   redirectToDashboard() {
     this.router.navigate(['/dashboard']); 
+  }
+  redirectToHome() {
+    this.router.navigate(['/homepage']); 
   }
   getObjectKeys(collection: any): string[] {
     return Object.keys(collection);
