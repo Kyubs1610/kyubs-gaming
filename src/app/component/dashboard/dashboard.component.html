@@ -38,17 +38,25 @@
 
 <div class="title" *ngIf="userInfo"> 
     <h1> Welcome {{ userInfo.pseudo }} </h1>
-    <button mat-raised-button color="primary" class="soloButton logoutButton" (click)="logout()">Log Out</button>
+    <div class="button-container">
+    <button mat-raised-button  color="primary" class="logoutButton" > Back to Kyubs Gaming</button>
+
+    <button mat-raised-button color="primary" style="margin-top:4rem" class="logoutButton back" (click)="logout()">Log Out</button>
+    </div>
 </div>
 <main class="containerinfo"> 
 <div  class="containercontent" *ngIf="userInfo">
     <img class="containerpicture rond" [src]="userInfo.avatar" (click)="openDialog()"> 
     <div class="text-container">
-    <h2  class="containertitle"> <span> Pseudo : </span>{{ userInfo.pseudo }} </h2>
+    <h2  class="containertitle" > <span> Pseudo : </span> {{ userInfo.pseudo }} </h2>
     <h2  class="containertitle"> <span> Email : </span> {{ userInfo.email }} </h2>
-    <h2  class="containertitle"> <span> Follower :  </span>{{ userInfo.followers?.length }} </h2>
-    <h2  class="containertitle"> <span> Following : </span>{{ userInfo.following?.length }} </h2>
-
+    <h2 (click)="openDialogFollower()" class="containertitle" > 
+      <span class='cursor'>  Follower :  </span>{{ userInfo.followers?.length }} 
+    </h2>
+    <h2  (click)="openDialogFollowing()" class="containertitle"> 
+      <span class='cursor'> Following : </span>{{ userInfo.following?.length }} 
+    </h2>    
+    <button mat-raised-button color="primary" class="share" (click)="copyUserLink()" > Share your profile </button> &nbsp;
     <a routerLink="/forgot-password">Change your Password</a> 
 
 </div>
@@ -57,7 +65,7 @@
 
 </main>
 <div class="wishlist" > 
-  <h2 class="wishlisttitle"> TO DO LIST </h2>
+  <h2 class="wishlisttitle"> Your list </h2>
   <ul>
     <li *ngFor="let key of getObjectKeys(userInfo?.collection || {} )">
         <div class="game_cards" [style.backgroundImage]="'url(' + userInfo?.collection[key]?.image+ ')'" *ngIf="userInfo?.collection[key]?.image" alt="Game Image">

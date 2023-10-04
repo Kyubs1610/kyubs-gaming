@@ -1,7 +1,6 @@
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';  
-import { AuthService } from '../login/login.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,14 +10,12 @@ import { AuthService } from '../login/login.service';
 export class UserinfoService {
 
   user: any;
-  // userInfos: any;
   connectedUser: any;
-
   userInfo: any;
 
   constructor(private firestore: AngularFirestore,
               private fireauth: AngularFireAuth,
-              private authService: AuthService) {}
+              ) {}
 
 
 
@@ -70,7 +67,6 @@ updateAvatar(avatarLink: string) {
 followUserService(userId: string, connectedUser: any, userInfo: any) {
   // Assurez-vous que userInfos contient les données de l'utilisateur connecté
   this.connectedUser = connectedUser;
-  console.log('connected user', this.connectedUser);
 
   // Mise à jour du tableau "following" de l'utilisateur connecté
   const updatedFollowing = this.connectedUser.following || [];
@@ -153,10 +149,6 @@ unfollowUserService(userId: string, connectedUser: any, userInfo: any) {
       console.error('Error unfollowing user:', error);
     });
 }
-
-
-
-
 
 }
 

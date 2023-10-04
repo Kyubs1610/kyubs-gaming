@@ -22,6 +22,11 @@ import { DashboardComponent } from './component/dashboard/dashboard.component';
 import { DialogComponent } from './component/dashboard/dialog/dialog.component';
 import {MatDialogModule} from '@angular/material/dialog';
 import { ProfileComponent } from './component/profile/profile.component';
+import { DialogfollowerComponent } from './component/dialogfollower/dialogfollower.component';
+import { MatCardModule } from '@angular/material/card';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { DialogfollowingComponent } from './component/dialogfollowing/dialogfollowing.component';
+
 
 
 @NgModule({
@@ -32,9 +37,11 @@ import { ProfileComponent } from './component/profile/profile.component';
     RegisterComponent,
     EmailVerificationComponent,
     ForgotpasswordComponent,
-    DashboardComponent,
     DialogComponent,
     ProfileComponent,
+    DialogfollowerComponent,
+    DashboardComponent,
+    DialogfollowingComponent,
     
     
   ],
@@ -52,9 +59,10 @@ import { ProfileComponent } from './component/profile/profile.component';
     MatOptionModule,
     MatSelectModule,
     MatDialogModule,
+    MatCardModule,
   ],
 
-  providers: [],
+  providers: [ { provide:MAT_DIALOG_DATA, useValue: {} }, { provide:MatDialogRef, useValue:{}} ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

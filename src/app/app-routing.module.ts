@@ -8,6 +8,8 @@ import { EmailVerificationComponent } from './component/verification/email-verif
 import { ForgotpasswordComponent } from './component/forgotpassword/forgotpassword.component';
 import { DashboardComponent } from './component/dashboard/dashboard.component';
 import { ProfileComponent } from './component/profile/profile.component';
+import { DialogfollowerComponent } from './component/dialogfollower/dialogfollower.component';
+import { DialogfollowingComponent } from './component/dialogfollowing/dialogfollowing.component';
 
 const routes: Routes = [
 
@@ -48,8 +50,8 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes),RouterModule.forRoot(routes, { useHash: true })],
+  imports: [RouterModule.forRoot(routes, { useHash: true })],
   exports: [RouterModule],
-  providers: [AuthGuardService]
+  providers: [AuthGuardService, DashboardComponent,DialogfollowerComponent,DialogfollowingComponent ]
 })
 export class AppRoutingModule { }

@@ -3,7 +3,8 @@ import { AuthService } from 'src/app/services/login/login.service';
 import { UserinfoService } from 'src/app/services/userinfo/userinfo.service';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
-import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { DialogfollowerComponent } from '../dialogfollower/dialogfollower.component';
+import { DialogfollowingComponent } from '../dialogfollowing/dialogfollowing.component';
 
 @Component({
   selector: 'app-profile',
@@ -24,11 +25,14 @@ export class ProfileComponent {
   collection: any[] = []; 
   followButtonText: string = "Follow";
   userInfos: any;
+  isFollowing: boolean = true;
 
   constructor(private authService: AuthService,
               private route: ActivatedRoute,
               private router: Router,
               private userinfoService: UserinfoService,
+              private dialogfollowerComponent: DialogfollowerComponent,
+              private dialogfollowingComponent: DialogfollowingComponent,
     ) {}
 
     ngOnInit() {
@@ -55,10 +59,11 @@ export class ProfileComponent {
                   console.log('Other user info:', this.userInfo);
   
                   // Check if the currently logged-in user is already following the other user
-                  const isFollowing = this.userInfos.following.includes(userId);
-  
-                  // Set the follow button text based on the follow state
-                  this.followButtonText = isFollowing ? 'Unfollow' : 'Follow';
+                  const isFollowing = this.userInfos.following.some((followedUser:any) => followedUser.uid === userId);
+
+              // Set the follow button text based on the follow state
+              this.followButtonText = isFollowing ? 'Unfollow' : 'Follow';
+            
                 });
               });
             } else {
@@ -86,6 +91,7 @@ export class ProfileComponent {
       this.followUser(userId); // Pass the userId from the URL
       console.log(this.userInfo)
       this.followButtonText = "Unfollow";
+      this.isFollowing = true;
     } else {
       const userId= this.userInfo.uid;
       this.unfollowUser(userId); // Pass the userId from the URL
@@ -101,7 +107,7 @@ export class ProfileComponent {
   unfollowUser(userId: string) {
     // Implement logic to unfollow the user with the provided userId
     this.userinfoService.unfollowUserService(userId, this.userInfos, this.userInfo);
-
+    
   }
   
   redirectToDashboard() {
@@ -113,6 +119,11 @@ export class ProfileComponent {
   getObjectKeys(collection: any): string[] {
     return Object.keys(collection);
   }
-
-
+  
+  openDialogFollower(){
+    this.dialogfollowerComponent.openDialogFollower();
+  }
+openDialogFollowing(){
+  this.dialogfollowingComponent.openDialogFollowing();
+}
 }

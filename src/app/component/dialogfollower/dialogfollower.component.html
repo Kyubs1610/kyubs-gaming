@@ -1,0 +1,19 @@
+
+
+<mat-card class="containerfollower">
+  <button mat-icon-button color="primary" class="deleteButton" (click)="closeDialog()">
+    <mat-icon>cancel</mat-icon>
+  </button>
+  <h1> Follower</h1>
+  <hr>
+
+  <div *ngFor="let user of followers">
+    <mat-card-content class="followerlist">
+      <img class="followerAvatar" [src]="user.avatar" />
+      <h4>{{ user.pseudo }}</h4>
+      <button mat-raised-button color="primary" class="goToProfile" (click)="goToProfile(user.uid)"> Profile</button>
+
+    </mat-card-content>
+  </div>
+</mat-card>
+
