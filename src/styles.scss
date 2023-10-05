@@ -159,15 +159,24 @@ body { margin: 0;  }
 }
 
 .containerpicture {
-  height: 15rem;
-  width: 15rem;
-  border-radius: 50%;
-  margin: 1rem 0;
-  cursor:pointer;
+
+
+  .rondAvatar {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background-image: url("./assets/profile/kyubs.jpg");
+      background-repeat: no-repeat;
+      background-size: cover;
+      border: 3px solid #fff;
+      cursor: pointer;
+  }
+
+  &:hover {
+    filter: brightness(0.8);
+  }
 }
-.rond{
-  border: 3px solid #fff;
-}
+
 
 .text-container {
   flex: 1;
@@ -324,10 +333,30 @@ li{
   width: 99%;
 
 }
+.backButton{
 
+  position: absolute;
+  top: center;
+  left: 0;
+  margin: 1rem;
+  background-color: #ffffff;
+  color: #000000;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+   &:hover{
+    background-color: #000000;
+    color: #ffffff;
+}
+}
 .logoutButton{
   position: absolute;
-  top: 0;
+  top: center;
   right: 0;
   margin: 1rem;
   background-color: #ffffff;
@@ -422,5 +451,6 @@ li{
   width: 100%;
   margin: 2rem 0;
 }
+
   
 }

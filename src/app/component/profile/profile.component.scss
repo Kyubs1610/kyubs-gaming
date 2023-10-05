@@ -30,26 +30,7 @@
         cursor:none;
      }
 
-     .logoutButton{
-        position: absolute;
-        top: 1.5rem;
-        right: 0;
-        margin: 1rem;
-        background-color: #ffffff;
-        color: #000000;
-        border: none;
-        border-radius: 5px;
-        padding: 10px;
-        font-size: 1rem;
-        font-weight: 600;
-        margin: 0.5rem;
-        cursor: pointer;
-        transition: all 0.3s ease-in-out;
-         &:hover{
-          background-color: #000000;
-          color: #ffffff;
-      }
-     }
+     
      .profile {
         z-index: 1;
         position: absolute;

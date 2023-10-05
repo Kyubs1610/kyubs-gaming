@@ -142,7 +142,7 @@ height: 30dvh;
 
 }
 .game_card{
-    border-radius: 50px;
+    border-radius: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -152,7 +152,6 @@ height: 30dvh;
     background-position: center;
     width: 100%;
     height: 100%;
-    border-radius: calc(0.3rem - 0px);
     border: 2px solid rgba( 255, 255, 255, 0.18 );
     cursor: auto;
 
@@ -176,14 +175,28 @@ height: 30dvh;
     backdrop-filter: blur( 4px );
     background-color: #000000;
   }
-.top-layout {
+  .top-layout {
     opacity: 0;
     position: absolute;
     bottom: 0;
-    text-align: center;
     width: 101%;
+}
 
-  }
+.gameInfo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.infoItem {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px; /* Optional: Add some spacing between items */
+    display: inline-block;
+}
+
+
   .profile {
     z-index: 1;
     position: absolute;
@@ -254,25 +267,43 @@ height: 30dvh;
   }
   .container ul li{
     width: 70%;
-    height: 20rem;  }
+    height: 15rem;  }
 
   .container ul{
-    margin-top: 27rem;
+    margin-top: 15rem;
   }
 
   .profile{
-    width: 40px;
-    height: 40px;
+    width: 50px;
+    height: 50px;
     margin-right: 1rem;
   }
 
 .top-layout {
-  h2{
-    font-size: 15px;
+   
+    width: 100%;
+    font-size: 6px;
+    height: 50%;
+    width: 102%;
+    flex-wrap: nowrap;
+    overflow: auto;
+    h2{
+      font-size: 10px;
+    }
+    .infoItem {
+      flex-wrap: nowrap;
+
   }
-height: auto;
-width: 101%;
-font-size: 10px
+    .gameInfo{
+      font-size: 8px;
+      display: inline-block;
+
+    }
+    .title{
+      font-size: 10px;
+    }
+
+
   }
   .favorite{
     height:20px;

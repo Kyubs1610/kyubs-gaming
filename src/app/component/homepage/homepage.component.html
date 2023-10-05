@@ -57,19 +57,17 @@
     </form>
     <div class="filter">
         <button mat-raised-button color="primary" class="genreFilter popularity soloButton"(click)="gamesByPopularity()">TOP 40 according to METACRITIC</button>
-        <button mat-raised-button color="primary" class="genreFilter popularity soloButton" (click)="gamesByRating()">TOP 40 according to the users</button>    <div class="genreFilter">
-            <span class="label">Order By Genre:</span>
-            <mat-select class="genres" name="selectGenre" [(ngModel)]="genre" (selectionChange)="getGameByGenre(genre)">
-                <mat-option class="option" *ngFor="let genre of genres" [value]="genre.id">{{genre.name}}</mat-option>
-            </mat-select>
-        </div>
-
+        <button mat-raised-button color="primary" class="genreFilter popularity soloButton" (click)="gamesByRating()">TOP 40 according to the users</button>    
         <div class="genreFilter">
             <span class="label">Order By Platforms:</span>
             <mat-select class="platform" name="selectPlatforms" [(ngModel)]="platform" (selectionChange)="getGameByPlatform(platform)" >
                 <mat-option class="option" *ngFor="let platform of platforms" [value]="platform.id">{{platform.name}}</mat-option>
             </mat-select>
         </div>
+        <!-- <span class="label">Order By Genre:</span>
+            <mat-select class="genres" name="selectGenre" [(ngModel)]="genre" (selectionChange)="getGameByGenre(genre)">
+                <mat-option class="option" *ngFor="let genre of genres" [value]="genre.id">{{genre.name}}</mat-option>
+            </mat-select> -->
     </div>
 
     <br><br>
@@ -84,15 +82,31 @@
                 <img class="favorite"
                 [src]="isFavorited[game.id] ? '../../../assets/profile/favoritered.png' : '../../../assets/profile/favorite.svg'"
                 (click)="toggleFavorite(game)">
-            <div class="top-layout">
-                <h2>{{game.name}}</h2>
-                Plateform : <span *ngFor="let platform of game.platforms">{{ platform.platform.name }}, </span> <br>
-                Genre: <span *ngFor="let genre of game.genres">{{ genre.name }}, </span> <br>
-                RATING : {{game.rating}}/5 <br>
-                METACRITIC : {{game.metacritic}}/100 <br>
-                GAME RELEASED : {{game.released | date: 'dd/MM/yyyy'}} <br>
-            </div>
-            
+                <div class="top-layout">
+                    <h2>{{game.name}}</h2>
+                    <div class="gameInfo">
+                        <div class="infoItem">
+                            <span class="label">Platform:</span>
+                            <span *ngFor="let platform of game.platforms">{{ platform.platform.name }}, </span>
+                        </div>
+                        <div class="infoItem">
+                            <span class="label">Genre:</span>
+                            <span *ngFor="let genre of game.genres">{{ genre.name }}, </span>
+                        </div>
+                        <div class="infoItem">
+                            <span class="label">Rating:</span>
+                            <span>{{game.rating}}/5 </span>
+                        </div>
+                        <div class="infoItem">
+                            <span class="label">Metacritic:</span>
+                            <span>{{game.metacritic}}/100 </span>
+                        </div>
+                        <div class="infoItem">
+                            <span class="label">Game Released:</span>
+                            <span>{{game.released | date: 'dd/MM/yyyy'}} </span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </li>
     </ul>

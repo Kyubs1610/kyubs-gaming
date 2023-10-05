@@ -10,19 +10,18 @@
   </div> 
 </div>
 <div class="container dialog-action" *ngIf="!userInfo?.pseudo">
-<h2 mat-dialog-title class="container dialog-title">Choose your pseudo here : </h2>
-  <input
+<h2 mat-dialog-title class="container dialog-title">Choose your pseudo here  </h2> 
+<input
     type="text"
     class="input"
     [(ngModel)]="users.pseudo"
     placeholder="Your pseudo"
   />
 </div>
-<div *ngIf="userInfo?.pseudo">
-</div> <br>
+ <br>
 
 <hr>
-<div mat-dialog-actions class="container dialog-action">
+<div mat-dialog-actions class="container dialog-actions">
   <button mat-button mat-dialog-close (click)="saveProfile()" >Save</button>
   <button mat-button mat-dialog-close>Cancel</button>
 </div>

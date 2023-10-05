@@ -107,20 +107,20 @@ isFavorited : { [gameId: string]: boolean } = {};;
       });
   }
       
-  getGenres(): void {
-    this.homepageService.getGenres()
-      .subscribe((response: any) => {
-        this.genres = response.results;
-        console.log(this.genres);
-      });
-  }
-  getGameByGenre(genre: string): void {
-    this.homepageService.getGamesByGenre(genre)
-      .subscribe((response: any) => {
-        this.games = response.results;
-        console.log(this.games);
-      });
-  }
+  // getGenres(): void {
+  //   this.homepageService.getGenres()
+  //     .subscribe((response: any) => {
+  //       this.genres = response.results;
+  //       console.log(this.genres);
+  //     });
+  // }
+  // getGameByGenre(genre: string): void {
+  //   this.homepageService.getGamesByGenre(genre)
+  //     .subscribe((response: any) => {
+  //       this.games = response.results;
+  //       console.log(this.games);
+  //     });
+  // }
   getGameByPlatform(platform: string): void {
     this.homepageService.getGamesByPlatform(platform)
       .subscribe((response: any) => {

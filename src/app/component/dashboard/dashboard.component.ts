@@ -6,6 +6,7 @@ import { HomepageService } from 'src/app/services/homepage/homepage.service';
 import { DialogfollowerComponent } from '../dialogfollower/dialogfollower.component';
 import { DialogComponent } from '../dashboard/dialog/dialog.component';
 import { DialogfollowingComponent } from '../dialogfollowing/dialogfollowing.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -37,6 +38,7 @@ export class DashboardComponent  {
               private homepageService: HomepageService,
               private dialogFollowingComponent: DialogfollowingComponent,
               private dialogfollowerComponent: DialogfollowerComponent,
+              private router: Router,
 
               
               ) {}
@@ -101,4 +103,8 @@ copyUserLink() {
     delete this.collection[key]; // Remove the game with the given ID from the collection
     return this.homepageService.deleteFavorite(this.collection);
   }
+
+  redirectToHome() {
+    this.router.navigate(['/homepage']);
+}
 }

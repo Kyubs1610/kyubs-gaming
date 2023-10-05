@@ -37,16 +37,23 @@
 </div>
 
 <div class="title" *ngIf="userInfo"> 
-    <h1> Welcome {{ userInfo.pseudo }} </h1>
-    <div class="button-container">
-    <button mat-raised-button  color="primary" class="logoutButton" > Back to Kyubs Gaming</button>
 
-    <button mat-raised-button color="primary" style="margin-top:4rem" class="logoutButton back" (click)="logout()">Log Out</button>
-    </div>
+  <button mat-raised-button  color="primary" class="backButton" (click)="redirectToHome()" >       <mat-icon>home</mat-icon>
+  </button>
+
+    <h1> Welcome {{ userInfo.pseudo }} </h1>
+
+    <button mat-raised-button color="primary"  class="logoutButton" (click)="logout()">
+      <mat-icon>logout</mat-icon>
+    </button>
+    
 </div>
 <main class="containerinfo"> 
 <div  class="containercontent" *ngIf="userInfo">
-    <img class="containerpicture rond" [src]="userInfo.avatar" (click)="openDialog()"> 
+  <div class="containerpicture">
+    <img class="rondAvatar" [src]="userInfo?.avatar" (click)="openDialog()">
+  </div>
+  
     <div class="text-container">
     <h2  class="containertitle" > <span> Pseudo : </span> {{ userInfo.pseudo }} </h2>
     <h2  class="containertitle"> <span> Email : </span> {{ userInfo.email }} </h2>
@@ -56,7 +63,7 @@
     <h2  (click)="openDialogFollowing()" class="containertitle"> 
       <span class='cursor'> Following : </span>{{ userInfo.following?.length }} 
     </h2>    
-    <button mat-raised-button color="primary" class="share" (click)="copyUserLink()" > Share your profile </button> &nbsp;
+    <button mat-raised-button color="primary" class="share" (click)="copyUserLink()" > Share your profile </button> <br><br>
     <a routerLink="/forgot-password">Change your Password</a> 
 
 </div>
