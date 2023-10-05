@@ -159,8 +159,9 @@ body { margin: 0;  }
 }
 
 .containerpicture {
-
-
+ display: flex;
+justify-content: center;
+margin-top: 1rem;
   .rondAvatar {
     width: 200px;
     height: 200px;

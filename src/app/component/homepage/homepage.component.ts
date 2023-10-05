@@ -60,10 +60,10 @@ isFavorited : { [gameId: string]: boolean } = {};;
         console.log(this.userInfo);
       });
     });
-    this.homepageService.getGenres().subscribe((response: any) => {
-      this.genres = response.results;
-      console.log(this.genres);
-    });
+    // this.homepageService.getGenres().subscribe((response: any) => {
+    //   this.genres = response.results;
+    //   console.log(this.genres);
+    // });
     this.homepageService.getPlatforms().subscribe((response: any) => {
       this.platforms = response.results;
       console.log(this.platforms);
@@ -136,41 +136,47 @@ isFavorited : { [gameId: string]: boolean } = {};;
   toggleFavorite(game: any) {
     const gameId = game.id;
     console.log(gameId);
-  
+
+    // Vérifier et initialiser this.isFavorited
+    this.isFavorited = this.isFavorited || {};
+
+    // Vérifier et initialiser this.userInfo
+    if (!this.userInfo) {
+        this.userInfo = {};
+    }
+
+    // Vérifier et initialiser this.userInfo.collection
+    this.userInfo.collection = this.userInfo.collection && typeof this.userInfo.collection === 'object' ? this.userInfo.collection : {};
+
     // Create an object with the game data
     const gameData = {
-      id: game.id,
-      name: game.name,
-      image: game.short_screenshots[0]?.image,
+        id: game.id,
+        name: game.name,
+        image: game.short_screenshots[0]?.image,
     };
-  
+
     console.log(gameData);
-  
+
     this.isFavorited[gameId] = !this.isFavorited[gameId];
     console.log(this.isFavorited);
-  
+
     // Update local storage with the favorited game IDs
     const favoritedGameIds = Object.keys(this.isFavorited).filter(id => this.isFavorited[id]);
     localStorage.setItem('favoritedGameIds', JSON.stringify(favoritedGameIds));
-  
-    // Ensure that this.userInfo.collection is also initialized
-    this.collection = this.userInfo.collection || {};
-  
+
     // If the game is favorited, add it to the collection
     if (this.isFavorited[gameId]) {
-      this.collection[gameId] = gameData;
+        this.userInfo.collection[gameId] = gameData;
     } else {
-      // Otherwise, remove it from the collection
-      delete this.collection[gameId];
+        // Otherwise, remove it from the collection
+        delete this.userInfo.collection[gameId];
     }
 
-  
-    console.log(this.collection);
-  
+    console.log(this.userInfo.collection);
+
     // Send the entire updated collection to the service
-    this.homepageService.updateFavorite(this.collection);
-  }
-  
-  
+    this.homepageService.updateFavorite(this.userInfo.collection);
+}
+
 
 }
