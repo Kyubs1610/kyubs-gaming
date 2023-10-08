@@ -16,11 +16,10 @@ justify-content: center;
 background-color: rgb(0, 0, 0);
 
 }
-.followerlist{
+.followerlist {
     display: flex;
-    flex-direction: row;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-start;
     border-radius: 10px;
     margin: 0.5rem;
     background-color: #000000;
@@ -28,16 +27,26 @@ background-color: rgb(0, 0, 0);
     cursor: pointer;
     border: 1px solid #f3efef;
     transition: all 0.3s ease-in-out;
-    .followerAvatar{
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
+  
+    .followerAvatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      margin-right: 1rem;
     }
-    h4{
-        margin: 0.5rem;
+  
+    h4 {
+      margin: 0;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 150px; /* Ajustez la valeur selon vos besoins */
     }
-
-}
+  
+    .goToProfile {
+      margin-left: auto;
+    }
+  }
 
 h1{
     margin: 1rem;
